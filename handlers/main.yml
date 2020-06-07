@@ -1,7 +1,7 @@
 ---
 # handlers file for redis_role
 
-- name: Restart Redis Service
+- name: Restart Redis
   service: "name=redis-server state=restarted"
 
 ...

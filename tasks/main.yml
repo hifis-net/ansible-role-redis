@@ -1,10 +1,20 @@
 ---
 # tasks file for redis_role
 
-- name: Install Redis.
-  apt:
-    name: "redis-server"
-    state: present
+- name: Download Redis
+  get_url:
+    url: https://download.redis.io/releases/redis-6.0.4.tar.gz
+    dest: /tmp/redis.tar.gz
+    mode: 0644
+
+- name: Extract redis.tar.gz into /usr/bin/redis-server
+  unarchive:
+    src: redis.tar.gz
+    dest: /usr/bin/redis-server
+
+- name: Build Redis
+  make:
+    chdir: /usr/bin/redis-server
 
 - name: Configure Redis.
   template:
@@ -17,9 +27,9 @@
     src: sentinel.conf.j2
     dest: "/etc/redis/sentinel.conf"
     mode: 0644
-  notify: Restart Redis Service
 
-- name: Register Service to Run Redis on Boot.
+- name: Register Service.
   service: "name=redis-server state=started enabled=yes"
+  notify: Restart Redis
 
 ...
