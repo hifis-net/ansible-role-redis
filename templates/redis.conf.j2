@@ -27,6 +27,6 @@ no-appendfsync-on-rewrite no
 requirepass {{ requirepass }}
 masterauth {{ masterauth }}
 
-{% if ubuntu_redis_relica_sentinel_ip %}
+{% if ubuntu_redis_relica_sentinel_ip is defined %}
 replicaof {{ ubuntu_redis_master_1_sentinel_1_ip }} 6379
 {% endif %}
