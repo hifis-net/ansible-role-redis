@@ -2,10 +2,10 @@
 daemonize yes
 pidfile /var/run/redis/redis-server.pid
 port 6379
-{% if ubuntu_redis_relica_sentinel_ip is not defined %}
-bind {{ ubuntu_redis_master_1_sentinel_1_ip }}
+{% if ubuntu_gitlab_redis_type == 'master' %}
+bind 127.0.0.1 {{ ubuntu_redis_master_1_sentinel_1_ip }}
 {% else %}
-bind {{ ubuntu_redis_relica_sentinel_ip }}
+bind 127.0.0.1 {{ ubuntu_redis_relica_sentinel_ip }}
 {% endif %}
 
 timeout 300
@@ -31,6 +31,6 @@ no-appendfsync-on-rewrite no
 requirepass {{ requirepass }}
 masterauth {{ masterauth }}
 
-{% if ubuntu_redis_relica_sentinel_ip is defined %}
+{% if ubuntu_gitlab_redis_type == 'replica' %}
 replicaof {{ ubuntu_redis_master_1_sentinel_1_ip }} 6379
 {% endif %}

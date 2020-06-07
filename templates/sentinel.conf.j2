@@ -1,8 +1,8 @@
 
-{% if ubuntu_redis_relica_sentinel_ip is not defined %}
-bind {{ ubuntu_redis_master_1_sentinel_1_ip }}
+{% if ubuntu_gitlab_redis_type == 'master' %}
+bind 127.0.0.1 {{ ubuntu_redis_master_1_sentinel_1_ip }}
 {% else %}
-bind {{ ubuntu_redis_relica_sentinel_ip }}
+bind 127.0.0.1 {{ ubuntu_redis_relica_sentinel_ip }}
 {% endif %}
 port 26379
 sentinel auth-pass {{ ubuntu_gitlab_redis_name }} {{ sentinelpass }}
