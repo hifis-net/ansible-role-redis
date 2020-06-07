@@ -1,28 +1,63 @@
 ---
 # tasks file for redis_role
 
-- name: Download Redis
-  get_url:
-    url: https://download.redis.io/releases/redis-6.0.4.tar.gz
-    dest: /tmp/redis.tar.gz
-    mode: 0644
+- name: Install Make
+  become: yes
+  become_user: root
+  package:
+    name: "build-essential"
+    state: present
 
-- name: Extract redis.tar.gz into /usr/bin/redis-server
+- name: Download and extract redis-6.0.4.tar.gz into /usr/bin/redis-server.
+  become: yes
+  become_user: root
   unarchive:
-    src: redis.tar.gz
-    dest: /usr/bin/redis-server
+    src: http://download.redis.io/releases/redis-6.0.4.tar.gz
+    dest: /usr/bin/
+    remote_src: yes
+
+- name: Rename Directory
+  become: yes
+  become_user: root
+  command: mv /usr/bin/redis-6.0.4 /usr/bin/redis-server
 
 - name: Build Redis
+  become: yes
+  become_user: root
   make:
     chdir: /usr/bin/redis-server
 
+- name: Install Redis
+  become: yes
+  become_user: root
+  make:
+    chdir: /usr/bin/redis-server
+    target: install
+
+- name: Create Redis Configuration Directory.
+  become: yes
+  become_user: root
+  file:
+    path: /etc/redis/
+    state: directory
+    mode: 0755
+
+- name: Execute Redis Install Script.
+  become: yes
+  become_user: root
+  command: bash /usr/bin/redis-server/utils/install_server.sh
+
 - name: Configure Redis.
+  become: yes
+  become_user: root
   template:
     src: redis.conf.j2
     dest: "/etc/redis/redis.conf"
     mode: 0644
 
 - name: Configure Sentinel.
+  become: yes
+  become_user: root
   template:
     src: sentinel.conf.j2
     dest: "/etc/redis/sentinel.conf"
