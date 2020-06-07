@@ -2,7 +2,7 @@
 daemonize yes
 pidfile /var/run/redis/redis-server.pid
 port 6379
-bind {{ ubuntu_redis_master_ip }}
+bind {{ ubuntu_redis_relica_sentinel_ip }}
 
 timeout 300
 
@@ -26,3 +26,7 @@ no-appendfsync-on-rewrite no
 
 requirepass {{ requirepass }}
 masterauth {{ masterauth }}
+
+{% if ubuntu_redis_relica_sentinel_ip %}
+replicaof {{ ubuntu_redis_master_1_sentinel_1_ip }} 6379
+{% endif %}
