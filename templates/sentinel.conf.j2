@@ -1,5 +1,9 @@
 
-bind {{ ubuntu_redis_replica_sentinel_ip }}
+{% if ubuntu_redis_relica_sentinel_ip is not defined %}
+bind {{ ubuntu_redis_master_1_sentinel_1_ip }}
+{% else %}
+bind {{ ubuntu_redis_relica_sentinel_ip }}
+{% endif %}
 port 26379
 sentinel auth-pass {{ ubuntu_gitlab_redis_name }} {{ sentinelpass }}
 sentinel monitor {{ ubuntu_gitlab_redis_name }} {{ ubuntu_redis_master_1_sentinel_1_ip }} 6379 2

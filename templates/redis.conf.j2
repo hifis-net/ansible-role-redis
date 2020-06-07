@@ -2,7 +2,11 @@
 daemonize yes
 pidfile /var/run/redis/redis-server.pid
 port 6379
+{% if ubuntu_redis_relica_sentinel_ip is not defined %}
+bind {{ ubuntu_redis_master_1_sentinel_1_ip }}
+{% else %}
 bind {{ ubuntu_redis_relica_sentinel_ip }}
+{% endif %}
 
 timeout 300
 
