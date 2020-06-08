@@ -68,8 +68,8 @@
   become_user: root
   replace:
     path: /usr/bin/redis-server/utils/systemd-redis_server.service
-    regexp: '--daemonize no'
-    replace: '--daemonize yes'
+    regexp: '--supervised systemd --daemonize no'
+    replace: '/etc/redis/redis.conf'
 
 - name: Replace in Redis Service File
   become: yes
@@ -104,11 +104,21 @@
     system: yes
     create_home: no
 
-- name: Create Redis Directory.
+- name: Create Redis Data Directory.
   become: yes
   become_user: root
   file:
     path: /var/lib/redis
+    state: directory
+    mode: 0770
+    owner: redis
+    group: redis
+
+- name: Create Redis Log Directory.
+  become: yes
+  become_user: root
+  file:
+    path: /var/log/redis
     state: directory
     mode: 0770
     owner: redis
