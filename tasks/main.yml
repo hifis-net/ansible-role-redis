@@ -64,6 +64,8 @@
     mode: 0644
 
 - name: Replace in Redis Service File
+  become: yes
+  become_user: root
   replace:
     path: /usr/bin/redis-server/utils/systemd-redis_server.service
     regexp: '--daemonize no'
