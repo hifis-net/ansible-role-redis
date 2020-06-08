@@ -76,8 +76,8 @@
   become_user: root
   replace:
     path: /usr/bin/redis-server/utils/systemd-redis_server.service
-    regexp: 'type=notify'
-    replace: 'type=forking'
+    regexp: 'Type=notify'
+    replace: 'Type=forking'
 
 - name: Copy Redis Service File.
   become: yes
