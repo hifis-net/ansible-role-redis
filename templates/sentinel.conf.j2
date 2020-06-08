@@ -14,6 +14,7 @@ sentinel monitor {{ ubuntu_gitlab_redis_name }} {{ ubuntu_redis_master_1_sentine
 sentinel auth-pass {{ ubuntu_gitlab_redis_name }} {{ sentinelpass }}
 sentinel down-after-milliseconds {{ ubuntu_gitlab_redis_name }} 10000
 sentinel failover-timeout {{ ubuntu_gitlab_redis_name }} 30000
+sentinel parallel-syncs {{ ubuntu_gitlab_redis_name }} 1
 
 protected-mode "no"
 
