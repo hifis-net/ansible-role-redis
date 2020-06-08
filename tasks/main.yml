@@ -79,6 +79,12 @@
     dest: /etc/systemd/system/redis-server.service
     remote_src: yes
 
+- name: Create Redis Group.
+  group:
+    name: redis
+    system: yes
+    state: present
+
 - name: Add Redis System User.
   become: yes
   become_user: root
