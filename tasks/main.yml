@@ -42,10 +42,10 @@
     state: directory
     mode: 0755
 
-- name: Execute Redis Install Script.
-  become: yes
-  become_user: root
-  command: bash /usr/bin/redis-server/utils/install_server.sh
+#- name: Execute Redis Install Script.
+#  become: yes
+#  become_user: root
+#  command: bash /usr/bin/redis-server/utils/install_server.sh
 
 - name: Configure Redis.
   become: yes
@@ -62,6 +62,32 @@
     src: sentinel.conf.j2
     dest: "/etc/redis/sentinel.conf"
     mode: 0644
+
+- name: Copy Redis Service File.
+  become: yes
+  become_user: root
+  copy:
+    src: /usr/bin/redis-server/utils/systemd-redis_server.service
+    dest: /etc/systemd/system/redis.service
+
+- name: Add Redis System User.
+  become: yes
+  become_user: root
+  user:
+    name: redis
+    group: redis
+    system: yes
+    create_home: no
+
+- name: Create Redis Directory.
+  become: yes
+  become_user: root
+  file:
+    path: /var/lib/redis
+    state: directory
+    mode: 0770
+    owner: redis
+    group: redis
 
 - name: Register Service.
   service: "name=redis-server state=started enabled=yes"
