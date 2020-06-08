@@ -101,7 +101,7 @@
   replace:
     path: /etc/systemd/system/redis-sentinel.service
     regexp: '--supervised systemd --daemonize no'
-    replace: '/etc/redis/sentinel.conf - sentinel'
+    replace: '/etc/redis/sentinel.conf --sentinel'
 
 - name: Replace in Redis Sentinel Service File
   become: yes
