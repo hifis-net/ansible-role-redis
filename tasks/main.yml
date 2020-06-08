@@ -80,6 +80,8 @@
     remote_src: yes
 
 - name: Create Redis Group.
+  become: yes
+  become_user: root
   group:
     name: redis
     system: yes
