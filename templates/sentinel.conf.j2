@@ -8,7 +8,7 @@ port 26379
 sentinel monitor {{ ubuntu_gitlab_redis_name }} {{ ubuntu_redis_master_1_sentinel_1_ip }} 6379 2
 sentinel auth-pass {{ ubuntu_gitlab_redis_name }} {{ sentinelpass }}
 sentinel down-after-milliseconds {{ ubuntu_gitlab_redis_name }} 10000
-sentinel failover_timeout 30000
+sentinel failover_timeout {{ ubuntu_gitlab_redis_name }} 30000
 
 protected-mode "no"
 
