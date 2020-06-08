@@ -1,10 +1,15 @@
 
+supervised systemd
+daemonize yes
+pidfile /var/run/redis/redis-sentinel.pid
+
 {% if ubuntu_gitlab_redis_type == "replica" %}
 bind 127.0.0.1 {{ ubuntu_redis_replica_sentinel_ip }}
 {% else %}
 bind 127.0.0.1 {{ ubuntu_redis_master_1_sentinel_1_ip }}
 {% endif %}
 port 26379
+
 sentinel monitor {{ ubuntu_gitlab_redis_name }} {{ ubuntu_redis_master_1_sentinel_1_ip }} 6379 2
 sentinel auth-pass {{ ubuntu_gitlab_redis_name }} {{ sentinelpass }}
 sentinel down-after-milliseconds {{ ubuntu_gitlab_redis_name }} 10000
