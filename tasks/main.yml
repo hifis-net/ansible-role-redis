@@ -63,29 +63,53 @@
     dest: "/etc/redis/sentinel.conf"
     mode: 0644
 
-- name: Replace in Redis Service File
-  become: yes
-  become_user: root
-  replace:
-    path: /usr/bin/redis-server/utils/systemd-redis_server.service
-    regexp: '--supervised systemd --daemonize no'
-    replace: '/etc/redis/redis.conf'
-
-- name: Replace in Redis Service File
-  become: yes
-  become_user: root
-  replace:
-    path: /usr/bin/redis-server/utils/systemd-redis_server.service
-    regexp: 'Type=notify'
-    replace: 'Type=forking'
-
-- name: Copy Redis Service File.
+- name: Copy Redis Server Service File.
   become: yes
   become_user: root
   copy:
     src: /usr/bin/redis-server/utils/systemd-redis_server.service
     dest: /etc/systemd/system/redis-server.service
     remote_src: yes
+
+- name: Replace in Redis Server Service File
+  become: yes
+  become_user: root
+  replace:
+    path: /etc/systemd/system/redis-server.service
+    regexp: '--supervised systemd --daemonize no'
+    replace: '/etc/redis/redis.conf'
+
+- name: Replace in Redis Server Service File
+  become: yes
+  become_user: root
+  replace:
+    path: /etc/systemd/system/redis-server.service
+    regexp: 'Type=notify'
+    replace: 'Type=forking'
+
+- name: Copy Redis Sentinel Service File.
+  become: yes
+  become_user: root
+  copy:
+    src: /usr/bin/redis-server/utils/systemd-redis_server.service
+    dest: /etc/systemd/system/redis-sentinel.service
+    remote_src: yes
+
+- name: Replace in Redis Sentinel Service File
+  become: yes
+  become_user: root
+  replace:
+    path: /etc/systemd/system/redis-sentinel.service
+    regexp: '--supervised systemd --daemonize no'
+    replace: '/etc/redis/sentinel.conf - sentinel'
+
+- name: Replace in Redis Sentinel Service File
+  become: yes
+  become_user: root
+  replace:
+    path: /etc/systemd/system/redis-sentinel.service
+    regexp: 'Type=notify'
+    replace: 'Type=forking'
 
 - name: Create Redis Group.
   become: yes
@@ -124,10 +148,16 @@
     owner: redis
     group: redis
 
-- name: Register Service.
+- name: Register Redis Server Service.
   become: yes
   become_user: root
   service: "name=redis-server state=started enabled=yes"
-  notify: Restart Redis
+  notify: Restart Redis Server
+
+- name: Register Redis Sentinel Service.
+  become: yes
+  become_user: root
+  service: "name=redis-sentinel state=started enabled=yes"
+  notify: Restart Redis Sentinel
 
 ...

@@ -1,9 +1,14 @@
 ---
 # handlers file for redis_role
 
-- name: Restart Redis
+- name: Restart Redis Server
   become: yes
   become_user: root
   service: "name=redis-server state=restarted"
+
+- name: Restart Redis Sentinel
+  become: yes
+  become_user: root
+  service: "name=redis-sentinel state=restarted"
 
 ...
