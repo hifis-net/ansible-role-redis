@@ -71,6 +71,14 @@
     regexp: '--daemonize no'
     replace: '--daemonize yes'
 
+- name: Replace in Redis Service File
+  become: yes
+  become_user: root
+  replace:
+    path: /usr/bin/redis-server/utils/systemd-redis_server.service
+    regexp: 'type=notify'
+    replace: 'type=forking'
+
 - name: Copy Redis Service File.
   become: yes
   become_user: root
@@ -107,6 +115,8 @@
     group: redis
 
 - name: Register Service.
+  become: yes
+  become_user: root
   service: "name=redis-server state=started enabled=yes"
   notify: Restart Redis
 
