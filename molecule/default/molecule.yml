@@ -11,6 +11,9 @@ platforms:
     override_command: false
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
+lint: |
+  yamllint --strict --format colored .
+  ansible-lint -v --force-color
 provisioner:
   name: ansible
 verifier:
