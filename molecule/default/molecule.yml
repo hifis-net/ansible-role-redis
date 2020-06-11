@@ -1,0 +1,20 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: jrei/systemd-ubuntu:18.04
+    pre_build_image: true
+    privileged: true
+    override_command: false
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+lint: |
+  yamllint --strict --format colored .
+  ansible-lint -v --force-color
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
