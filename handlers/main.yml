@@ -1,5 +1,4 @@
 ---
-# handlers file for redis_role
 
 - name: Restart Redis Server
   become: yes

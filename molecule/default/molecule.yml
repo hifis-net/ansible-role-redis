@@ -4,7 +4,7 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: instance
+  - name: instance_redis
     image: jrei/systemd-ubuntu:18.04
     pre_build_image: true
     privileged: true
@@ -16,5 +16,10 @@ lint: |
   ansible-lint -v --force-color
 provisioner:
   name: ansible
+  playbooks:
+    prepare: prepare.yml
+    converge: converge.yml
 verifier:
   name: ansible
+
+...

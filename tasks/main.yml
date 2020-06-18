@@ -1,38 +1,69 @@
 ---
-# tasks file for redis_role
 
-- name: Install Make
+- name: Gather package facts.
+  package_facts:
+    manager: auto
+
+- name: Install Make.
   become: yes
   become_user: root
   package:
     name: "build-essential"
     state: present
+  when: '"build-essential" not in ansible_facts.packages'
 
-- name: Download and extract redis-6.0.4.tar.gz into /usr/bin/.
+- name: Check if Redis directory exists.
+  stat:
+    path: /tmp/redis-server/
+  register: redis_directory
+
+- name: Download and extract redis-{{ redis_version_string }}.tar.gz into /tmp.
   become: yes
   become_user: root
   unarchive:
-    src: http://download.redis.io/releases/redis-6.0.4.tar.gz
-    dest: /usr/bin/
+    src: http://download.redis.io/releases/redis-{{ redis_version_string }}.tar.gz
+    dest: /tmp
     remote_src: yes
+  when: redis_directory.stat.isdir is undefined
 
-- name: Rename Directory
+- name: Rename Directory.
   become: yes
   become_user: root
-  command: mv /usr/bin/redis-6.0.4 /usr/bin/redis-server
+  command:
+    cmd: mv /tmp/redis-{{ redis_version_string }} /tmp/redis-server
+    creates: /tmp/redis-server
+  args:
+    chdir: /usr/bin
 
-- name: Build Redis
+- name: Check if Redis server file exists.
+  stat:
+    path: /tmp/redis-server/src/redis-server
+  register: redis_server_file
+
+- name: Build Redis.
   become: yes
   become_user: root
   make:
-    chdir: /usr/bin/redis-server
+    chdir: /tmp/redis-server
+  when: not redis_server_file.stat.exists
+
+- name: Check if Redis server file is copied.
+  stat:
+    path: /usr/local/bin/redis-server
+  register: redis_server_file_copied
 
 - name: Install Redis
   become: yes
   become_user: root
   make:
-    chdir: /usr/bin/redis-server
+    chdir: /tmp/redis-server
     target: install
+  when: not redis_server_file_copied.stat.exists
+
+- name: Check if Redis Configuration Directory exists.
+  stat:
+    path: /etc/redis/
+  register: redis_configuration_directory
 
 - name: Create Redis Configuration Directory.
   become: yes
@@ -41,11 +72,12 @@
     path: /etc/redis/
     state: directory
     mode: 0755
+  when: redis_configuration_directory.stat.isdir is undefined
 
-#- name: Execute Redis Install Script.
-#  become: yes
-#  become_user: root
-#  command: bash /usr/bin/redis-server/utils/install_server.sh
+- name: Check if Redis server configuration file exists.
+  stat:
+    path: /etc/redis/redis.conf
+  register: redis_server_configuration_file
 
 - name: Configure Redis.
   become: yes
@@ -54,6 +86,12 @@
     src: redis.conf.j2
     dest: "/etc/redis/redis.conf"
     mode: 0644
+  when: not redis_server_configuration_file.stat.exists
+
+- name: Check if Redis sentinel configuration file exists.
+  stat:
+    path: /etc/redis/sentinel.conf
+  register: redis_sentinel_configuration_file
 
 - name: Configure Sentinel.
   become: yes
@@ -62,14 +100,21 @@
     src: sentinel.conf.j2
     dest: "/etc/redis/sentinel.conf"
     mode: 0644
+  when: not redis_sentinel_configuration_file.stat.exists
+
+- name: Check if Redis server service file exists.
+  stat:
+    path: /etc/systemd/system/redis-server.service
+  register: redis_server_service_file
 
 - name: Copy Redis Server Service File.
   become: yes
   become_user: root
   copy:
-    src: /usr/bin/redis-server/utils/systemd-redis_server.service
+    src: /tmp/redis-server/utils/systemd-redis_server.service
     dest: /etc/systemd/system/redis-server.service
     remote_src: yes
+  when: not redis_server_service_file.stat.exists
 
 - name: Replace in Redis Server Service File
   become: yes
@@ -87,13 +132,19 @@
     regexp: 'Type=notify'
     replace: 'Type=forking'
 
+- name: Check if Redis sentinel service file exists.
+  stat:
+    path: /etc/systemd/system/redis-sentinel.service
+  register: redis_sentinel_service_file
+
 - name: Copy Redis Sentinel Service File.
   become: yes
   become_user: root
   copy:
-    src: /usr/bin/redis-server/utils/systemd-redis_server.service
+    src: /tmp/redis-server/utils/systemd-redis_server.service
     dest: /etc/systemd/system/redis-sentinel.service
     remote_src: yes
+  when: not redis_sentinel_service_file.stat.exists
 
 - name: Replace in Redis Sentinel Service File
   become: yes
@@ -128,6 +179,11 @@
     system: yes
     create_home: no
 
+- name: Check if Redis Data Directory exists.
+  stat:
+    path: /var/lib/redis/
+  register: redis_data_directory
+
 - name: Create Redis Data Directory.
   become: yes
   become_user: root
@@ -137,6 +193,12 @@
     mode: 0770
     owner: redis
     group: redis
+  when: redis_data_directory.stat.isdir is undefined
+
+- name: Check if Redis Log Directory exists.
+  stat:
+    path: /var/log/redis/
+  register: redis_log_directory
 
 - name: Create Redis Log Directory.
   become: yes
@@ -147,6 +209,7 @@
     mode: 0770
     owner: redis
     group: redis
+  when: redis_log_directory.stat.isdir is undefined
 
 - name: Register Redis Server Service.
   become: yes
