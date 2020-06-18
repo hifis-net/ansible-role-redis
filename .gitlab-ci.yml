@@ -1,0 +1,28 @@
+---
+stages:
+  - test
+
+variables:
+  # tell Python-based tools to force color output
+  PY_COLORS: '1'
+  ANSIBLE_FORCE_COLOR: '1'
+
+molecule:
+  stage: test
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - apk update && apk add --no-cache
+      python3-dev py3-pip gcc git curl build-base
+      autoconf automake py3-cryptography linux-headers
+      musl-dev libffi-dev openssl-dev openssh
+    - docker info
+    - python3 --version
+    - python3 -m pip install -U pip
+    - pip install pipenv
+    - pipenv install --dev
+  script:
+    - pipenv run molecule test
+
+...
