@@ -1,5 +1,11 @@
+# SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
+# SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
+#
+# SPDX-License-Identifier: Apache-2.0
+
 ---
 stages:
+  - lint
   - test
 
 variables:
@@ -24,5 +30,9 @@ molecule:
     - pipenv install --dev
   script:
     - pipenv run molecule test
+
+include:
+  - project: hifis/gitlab-ci-templates
+    file: /templates/reuse-compliance.yml
 
 ...
