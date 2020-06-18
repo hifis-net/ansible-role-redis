@@ -1,2 +1,16 @@
 ---
-# defaults file for redis_role
+
+# Here you specify whether it is a 'master' or 'replica' instance:
+redis_instance_type: 'master'
+# You need to provide the IP address of your Redis instance:
+redis_instance_ip: "{{ ansible_default_ipv4.address }}"
+# This is the name of the Redis cluster:
+redis_cluster_name: 'redis-cluster'
+# You need to provide the IP address of your Redis master instance:
+redis_master_instance_ip: "{{ redis_instance_ip if redis_instance_type == 'master' else None }}"
+# This password is used to authenticate to the Redis instance:
+redis_instance_requirepass: 'changeme'
+# This password is used by the replicas to authenticate to the master:
+redis_instance_masterauth: 'changeme'
+# This password is used to authenticate to the Redis Sentinel instance:
+redis_instance_sentinelpass: 'changeme'
