@@ -2,17 +2,16 @@
 supervised systemd
 daemonize yes
 pidfile /var/run/redis/redis-server.pid
-port 6379
-{% if ubuntu_gitlab_redis_type == "replica" %}
-bind 127.0.0.1 {{ ubuntu_redis_replica_sentinel_ip }}
-{% else %}
-bind 127.0.0.1 {{ ubuntu_redis_master_1_sentinel_1_ip }}
-{% endif %}
-
-timeout 300
-
 loglevel "notice"
 logfile /var/log/redis/redis-server.log
+dir /var/lib/redis/
+bind {{ redis_instance_ip }}
+port 6379
+
+requirepass "{{ redis_instance_requirepass }}"
+masterauth "{{ redis_instance_masterauth }}"
+
+timeout 300
 
 databases 16
 
@@ -23,17 +22,13 @@ save 60 10000
 rdbcompression "yes"
 
 dbfilename dump.rdb
-dir /var/lib/redis
 
 appendonly "no"
 appendfsync "everysec"
 no-appendfsync-on-rewrite no
 
-requirepass "{{ requirepass }}"
-masterauth "{{ masterauth }}"
-
 protected-mode "no"
 
-{% if ubuntu_gitlab_redis_type == "replica" %}
-replicaof {{ ubuntu_redis_master_1_sentinel_1_ip }} 6379
+{% if redis_instance_type == "replica" %}
+replicaof {{ redis_master_instance_ip }} 6379
 {% endif %}

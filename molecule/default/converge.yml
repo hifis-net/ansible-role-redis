@@ -1,12 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  pre_tasks:
-    - name: Install dependencies
-      apt:
-        name:
-          - sudo
-        state: present
   tasks:
     - name: "Include redis_role"
       include_role:
