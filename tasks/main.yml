@@ -4,165 +4,203 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-# tasks file for redis_role
+- name: Check whether Redis server is installed.
+  stat:
+    path: "{{ redis_bin }}"
+  register: redis_server_installed
 
-- name: Install Make
+- name: Check Redis version.
+  command:
+    cmd: "{{ redis_bin }} -v"
+  register: redis_version_installed
+  when: redis_server_installed.stat.exists
+  # Version string will always result in state "changed".
+  changed_when:
+    - redis_version_installed.rc != 0
+    - redis_version_installed.stdout | regex_search('v=[0-9]{1,2}\\.[0-9]{1,2}\\.[0-9]{1,2}') != 'v='+redis_version
+
+- name: Determine version.
+  set_fact:
+    installed_redis_server_version: "{{ redis_version_installed.stdout | regex_search('v=[0-9]{1,2}\\.[0-9]{1,2}\\.[0-9]{1,2}') }}"
+  when: redis_server_installed.stat.exists
+
+- name: Determine reduced version.
+  set_fact:
+    reduced_installed_redis_server_version: "{{ installed_redis_server_version[2:] }}"
+  when: installed_redis_server_version is defined
+
+- name: Output version strings.
+  debug:
+    msg: "Installed version: {{ reduced_installed_redis_server_version }}, version to be installed: {{ redis_version }}."
+  when: reduced_installed_redis_server_version is defined
+
+- name: Check if version strings are equal.
+  set_fact:
+    is_redis_server_version_equal: "{{ reduced_installed_redis_server_version is version(redis_version, operator='==', strict=True) }}"
+  when: redis_server_installed.stat.exists
+
+- name: Install dependencies.
   become: yes
-  become_user: root
   package:
-    name: "build-essential"
+    name: "{{ item }}"
     state: present
-
-- name: Download and extract redis-6.0.4.tar.gz into /usr/bin/.
-  become: yes
-  become_user: root
-  unarchive:
-    src: http://download.redis.io/releases/redis-6.0.4.tar.gz
-    dest: /usr/bin/
-    remote_src: yes
-
-- name: Rename Directory
-  become: yes
-  become_user: root
-  command: mv /usr/bin/redis-6.0.4 /usr/bin/redis-server
-
-- name: Build Redis
-  become: yes
-  become_user: root
-  make:
-    chdir: /usr/bin/redis-server
-
-- name: Install Redis
-  become: yes
-  become_user: root
-  make:
-    chdir: /usr/bin/redis-server
-    target: install
-
-- name: Create Redis Configuration Directory.
-  become: yes
-  become_user: root
-  file:
-    path: /etc/redis/
-    state: directory
-    mode: 0755
-
-#- name: Execute Redis Install Script.
-#  become: yes
-#  become_user: root
-#  command: bash /usr/bin/redis-server/utils/install_server.sh
-
-- name: Configure Redis.
-  become: yes
-  become_user: root
-  template:
-    src: redis.conf.j2
-    dest: "/etc/redis/redis.conf"
-    mode: 0644
-
-- name: Configure Sentinel.
-  become: yes
-  become_user: root
-  template:
-    src: sentinel.conf.j2
-    dest: "/etc/redis/sentinel.conf"
-    mode: 0644
-
-- name: Copy Redis Server Service File.
-  become: yes
-  become_user: root
-  copy:
-    src: /usr/bin/redis-server/utils/systemd-redis_server.service
-    dest: /etc/systemd/system/redis-server.service
-    remote_src: yes
-
-- name: Replace in Redis Server Service File
-  become: yes
-  become_user: root
-  replace:
-    path: /etc/systemd/system/redis-server.service
-    regexp: '--supervised systemd --daemonize no'
-    replace: '/etc/redis/redis.conf'
-
-- name: Replace in Redis Server Service File
-  become: yes
-  become_user: root
-  replace:
-    path: /etc/systemd/system/redis-server.service
-    regexp: 'Type=notify'
-    replace: 'Type=forking'
-
-- name: Copy Redis Sentinel Service File.
-  become: yes
-  become_user: root
-  copy:
-    src: /usr/bin/redis-server/utils/systemd-redis_server.service
-    dest: /etc/systemd/system/redis-sentinel.service
-    remote_src: yes
-
-- name: Replace in Redis Sentinel Service File
-  become: yes
-  become_user: root
-  replace:
-    path: /etc/systemd/system/redis-sentinel.service
-    regexp: '--supervised systemd --daemonize no'
-    replace: '/etc/redis/sentinel.conf --sentinel'
-
-- name: Replace in Redis Sentinel Service File
-  become: yes
-  become_user: root
-  replace:
-    path: /etc/systemd/system/redis-sentinel.service
-    regexp: 'Type=notify'
-    replace: 'Type=forking'
+    update_cache: yes
+  with_items: "{{ redis_dependencies }}"
 
 - name: Create Redis Group.
   become: yes
-  become_user: root
   group:
-    name: redis
+    name: "{{ redis_group }}"
     system: yes
     state: present
 
 - name: Add Redis System User.
   become: yes
-  become_user: root
   user:
-    name: redis
-    group: redis
+    name: "{{ redis_user }}"
+    group: "{{ redis_group }}"
     system: yes
     create_home: no
 
-- name: Create Redis Data Directory.
+- name: Continue if Redis is not installed or versions are not equal.
+  when: not redis_server_installed.stat.exists or (redis_server_installed.stat.exists and not (is_redis_server_version_equal|bool))
+  block:
+    - name: Download and extract redis-{{ redis_version }}.tar.gz
+      become: yes
+      unarchive:
+        src: "{{ redis_download_url }}"
+        dest: "{{ redis_build_dir | dirname }}"
+        remote_src: yes
+
+    - name: Build Redis.
+      become: yes
+      make:
+        chdir: "{{ redis_build_dir }}"
+
+    - name: Install Redis.
+      become: yes
+      make:
+        chdir: "{{ redis_build_dir }}"
+        target: install
+
+    - name: Copy Redis Server Service Template.
+      become: yes
+      copy:
+        src: "{{ redis_service_template }}"
+        dest: "{{ redis_server_service_file }}"
+        remote_src: yes
+        mode: 0640
+        owner: "{{ redis_user }}"
+        group: "{{ redis_group }}"
+
+    - name: Copy Redis Sentinel Service Template.
+      become: yes
+      copy:
+        src: "{{ redis_service_template }}"
+        dest: "{{ redis_sentinel_service_file }}"
+        remote_src: yes
+        mode: 0640
+        owner: "{{ redis_user }}"
+        group: "{{ redis_group }}"
+
+    - name: Remove current Redis Build Directory.
+      file:
+        path: "{{ redis_build_dir }}"
+        state: absent
+      when: redis_version is defined
+
+- name: Create Redis Configuration Directory.
   become: yes
-  become_user: root
   file:
-    path: /var/lib/redis
+    path: "{{ redis_configuration_dir }}"
+    state: directory
+    mode: 0755
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+
+- name: Configure Redis.
+  become: yes
+  template:
+    src: redis.conf.j2
+    dest: "{{ redis_server_configuration_file }}"
+    mode: 0640
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+
+- name: Configure Sentinel.
+  become: yes
+  template:
+    src: sentinel.conf.j2
+    dest: "{{ redis_sentinel_configuration_file }}"
+    mode: 0640
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+  register: sentinel_configuration
+  # Redis adds some extra auto-generated lines to the file which will be
+  # overridden and hence this step always results in state "changed".
+  changed_when:
+    - sentinel_configuration.stderr is defined
+
+- name: Replacement in Redis Server Service File
+  become: yes
+  replace:
+    path: "{{ redis_server_service_file }}"
+    regexp: '--supervised systemd --daemonize no'
+    replace: "{{ redis_server_configuration_file }}"
+
+- name: Replacement in Redis Server Service File
+  become: yes
+  replace:
+    path: "{{ redis_server_service_file }}"
+    regexp: 'Type=notify'
+    replace: 'Type=forking'
+
+- name: Replacement in Redis Sentinel Service File
+  become: yes
+  replace:
+    path: "{{ redis_sentinel_service_file }}"
+    regexp: '--supervised systemd --daemonize no'
+    replace: "{{ redis_sentinel_configuration_file }} --sentinel"
+
+- name: Replacement in Redis Sentinel Service File
+  become: yes
+  replace:
+    path: "{{ redis_sentinel_service_file }}"
+    regexp: 'Type=notify'
+    replace: 'Type=forking'
+
+- name: Create Redis Lib Directory.
+  become: yes
+  file:
+    path: "{{ redis_lib_dir }}"
     state: directory
     mode: 0770
-    owner: redis
-    group: redis
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
 
 - name: Create Redis Log Directory.
   become: yes
-  become_user: root
   file:
-    path: /var/log/redis
+    path: "{{ redis_log_dir }}"
     state: directory
     mode: 0770
-    owner: redis
-    group: redis
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
 
 - name: Register Redis Server Service.
   become: yes
-  become_user: root
-  service: "name=redis-server state=started enabled=yes"
+  service:
+    name: "{{ redis_server_service_name }}"
+    state: started
+    enabled: yes
   notify: Restart Redis Server
 
 - name: Register Redis Sentinel Service.
   become: yes
-  become_user: root
-  service: "name=redis-sentinel state=started enabled=yes"
+  service:
+    name: "{{ redis_sentinel_service_name }}"
+    state: started
+    enabled: yes
   notify: Restart Redis Sentinel
 
 ...

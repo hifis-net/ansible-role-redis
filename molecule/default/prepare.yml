@@ -10,6 +10,7 @@
     - name: Install dependencies
       apt:
         name:
-          - sudo      # for `become` privilege escalation
-          - iproute2  # for gathering network facts
+          - sudo              # for `become` privilege escalation
+          - iproute2          # for gathering network facts
+          - ca-certificates   # for Redis download
         state: present
