@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 galaxy_info:
-  role_name: redis_role_fork
+  role_name: redis_role
 
   author: HIFIS Software Team
   description: Research Software Engineers
@@ -37,7 +37,7 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - bionic
+        - focal
 
   # List tags for your role here, one per line. A tag is a keyword that
   # describes and categorizes the role. Users find roles by searching for tags.
