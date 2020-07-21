@@ -13,6 +13,24 @@ variables:
   PY_COLORS: '1'
   ANSIBLE_FORCE_COLOR: '1'
 
+.before_script_template: &before_script
+  # Ansible refuses to read from a world-writeable folder
+  - chmod 0750 $CI_PROJECT_DIR
+  # Install tools.
+  - pip install -U pip
+  - pip install --ignore-installed pipenv
+  # Install project dependencies.
+  - pipenv install --dev
+
+validate:
+  stage: lint
+  image: python:3.8
+  before_script:
+    - *before_script
+  script:
+    # Run Molecule linter.
+    - pipenv run molecule lint
+
 molecule:
   stage: test
   image: docker:latest
@@ -26,23 +44,17 @@ molecule:
       python3-dev py3-pip gcc git curl build-base
       autoconf automake py3-cryptography linux-headers
       musl-dev libffi-dev openssl-dev openssh
-    # Output version string of tools used and
-    # install project dependencies.
+    # Output version string of tools used.
     - docker info
     - python3 --version
-    # Install tools.
-    - python3 -m pip install -U pip
-    - pip --version
-    - pip install pipenv
-    # Install project dependencies.
-    - pipenv install --dev
-    - pipenv run ansible --version
-    - pipenv run molecule --version
+    - *before_script
   script:
-    # Run Molecule tests
+    # Run Molecule tests.
     - pipenv run molecule test
 
 include:
+  # Include file to check REUSE-compliance (https://reuse.software/)
+  # by running `reuse lint` in a job called `compliance:reuse:`.
   - project: hifis/gitlab-ci-templates
     file: /templates/reuse-compliance.yml
 
