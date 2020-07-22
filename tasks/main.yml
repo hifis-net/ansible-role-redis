@@ -14,10 +14,7 @@
     cmd: "{{ redis_bin }} -v"
   register: redis_version_installed
   when: redis_server_installed.stat.exists
-  # Version string will always result in state "changed".
-  changed_when:
-    - redis_version_installed.rc != 0
-    - redis_version_installed.stdout | regex_search('v=[0-9]{1,2}\\.[0-9]{1,2}\\.[0-9]{1,2}') != 'v='+redis_version
+  changed_when: false
 
 - name: Determine version.
   set_fact:
