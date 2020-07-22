@@ -21,22 +21,17 @@
 
 - name: Determine version.
   set_fact:
-    installed_redis_server_version: "{{ redis_version_installed.stdout | regex_search('v=[0-9]{1,2}\\.[0-9]{1,2}\\.[0-9]{1,2}') }}"
+    installed_redis_server_version: "{{ redis_version_installed.stdout | regex_search('^Redis server v=(\\d+\\.\\d+\\.\\d+)', '\\1') | first }}"
   when: redis_server_installed.stat.exists
-
-- name: Determine reduced version.
-  set_fact:
-    reduced_installed_redis_server_version: "{{ installed_redis_server_version[2:] }}"
-  when: installed_redis_server_version is defined
 
 - name: Output version strings.
   debug:
-    msg: "Installed version: {{ reduced_installed_redis_server_version }}, version to be installed: {{ redis_version }}."
-  when: reduced_installed_redis_server_version is defined
+    msg: "Installed version: {{ installed_redis_server_version }}, version to be installed: {{ redis_version }}."
+  when: installed_redis_server_version is defined
 
 - name: Check if version strings are equal.
   set_fact:
-    is_redis_server_version_equal: "{{ reduced_installed_redis_server_version is version(redis_version, operator='==', strict=True) }}"
+    is_redis_server_version_equal: "{{ installed_redis_server_version is version(redis_version, operator='==', strict=True) }}"
   when: redis_server_installed.stat.exists
 
 - name: Install dependencies.
@@ -63,7 +58,7 @@
     create_home: no
 
 - name: Continue if Redis is not installed or versions are not equal.
-  when: not redis_server_installed.stat.exists or (redis_server_installed.stat.exists and not (is_redis_server_version_equal|bool))
+  when: not redis_server_installed.stat.exists or not is_redis_server_version_equal
   block:
     - name: Download and extract redis-{{ redis_version }}.tar.gz
       become: yes
