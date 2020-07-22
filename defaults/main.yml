@@ -5,6 +5,8 @@
 
 ---
 
+# Redis version
+redis_version_string: "6.0.6"
 # Here you specify whether it is a 'master' or 'replica' instance:
 redis_instance_type: 'master'
 # You need to provide the IP address of your Redis instance:

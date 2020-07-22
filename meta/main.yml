@@ -37,7 +37,6 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - bionic
         - focal
 
   # List tags for your role here, one per line. A tag is a keyword that
