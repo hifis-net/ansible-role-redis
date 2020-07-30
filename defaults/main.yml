@@ -51,6 +51,10 @@ redis_sentinel_configuration_file: '{{ redis_configuration_dir }}/sentinel.conf'
 redis_lib_dir: '/var/lib/redis/'
 # Redis logging directory
 redis_log_dir: '/var/log/redis/'
+# Redis log level, can be one of: debug, verbose, notice, warning
+redis_log_level: 'notice'
+# Sentinel log level, can be one of: debug, verbose, notice, warning
+sentinel_log_level: 'notice'
 # Redis user name
 redis_user: 'redis'
 # Redis group name
