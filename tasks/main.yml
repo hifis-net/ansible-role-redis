@@ -74,6 +74,9 @@
       make:
         chdir: "{{ redis_build_dir }}"
         target: install
+      notify:
+        - Restart Redis Server
+        - Restart Redis Sentinel
 
     - name: Remove current Redis Build Directory.
       file:
