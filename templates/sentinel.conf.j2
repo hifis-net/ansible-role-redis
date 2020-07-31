@@ -6,7 +6,7 @@
 supervised systemd
 daemonize yes
 pidfile "/var/run/redis/redis-sentinel.pid"
-logfile "/var/log/redis/redis-sentinel.log"
+logfile "{{ redis_sentinel_log_file_path }}"
 loglevel "{{ sentinel_log_level }}"
 dir /var/lib/redis/
 bind {{ redis_instance_ip }}
