@@ -10,7 +10,7 @@ Documentation=https://redis.io/documentation
 #AssertPathExists=/var/lib/redis
 
 [Service]
-ExecStart={{ redis_bin }} {{ redis_sentinel_configuration_file }} --supervised systemd --sentinel
+ExecStart={{ redis_bin }} {{ redis_sentinel_configuration_file }} --sentinel
 ## Alternatively, have redis-server load a configuration file:
 #ExecStart=/usr/local/bin/redis-server /path/to/your/redis.conf
 LimitNOFILE=10032
