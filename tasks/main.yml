@@ -74,6 +74,9 @@
       make:
         chdir: "{{ redis_build_dir }}"
         target: install
+      notify:
+        - Restart Redis Server
+        - Restart Redis Sentinel
 
     - name: Remove current Redis Build Directory.
       file:
@@ -122,6 +125,7 @@
     mode: '0640'
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
+  notify: Restart Redis Server
 
 - name: Configure Sentinel.
   become: yes
@@ -136,6 +140,7 @@
   # overridden and hence this step always results in state "changed".
   changed_when:
     - sentinel_configuration.stderr is defined
+  notify: Restart Redis Sentinel
 
 - name: Create Redis Lib Directory.
   become: yes
