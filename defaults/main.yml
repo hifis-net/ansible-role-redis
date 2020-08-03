@@ -31,10 +31,6 @@ redis_dependencies:
 redis_download_url: "https://download.redis.io/releases/redis-{{ redis_version }}.tar.gz"
 # Path to the directory in which Redis Server is build
 redis_build_dir: '/usr/local/src/redis-{{ redis_version }}'
-# Redis Server utilities directory
-redis_utils_dir: '{{ redis_build_dir }}/utils'
-# Name of the template file for Systemd service
-redis_service_template: '{{ redis_utils_dir }}/systemd-redis_server.service'
 # Directory into which Redis service file is copied
 redis_systemd_dir: '/etc/systemd/system'
 # Name of Redis Server service file
@@ -48,7 +44,7 @@ redis_server_configuration_file: '{{ redis_configuration_dir }}/redis.conf'
 # Path to Redis Sentinel configuration file
 redis_sentinel_configuration_file: '{{ redis_configuration_dir }}/sentinel.conf'
 # Redis library directory
-redis_lib_dir: '/var/lib/redis/'
+redis_lib_dir: '/var/lib/redis'
 # Redis logging directory
 redis_log_dir: '/var/log/redis'
 # Path to Redis Server log file

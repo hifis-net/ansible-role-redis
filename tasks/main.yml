@@ -75,38 +75,42 @@
         chdir: "{{ redis_build_dir }}"
         target: install
 
-    - name: Copy Redis Server Service Template.
-      become: yes
-      copy:
-        src: "{{ redis_service_template }}"
-        dest: "{{ redis_server_service_file }}"
-        remote_src: yes
-        mode: 0640
-        owner: "{{ redis_user }}"
-        group: "{{ redis_group }}"
-
-    - name: Copy Redis Sentinel Service Template.
-      become: yes
-      copy:
-        src: "{{ redis_service_template }}"
-        dest: "{{ redis_sentinel_service_file }}"
-        remote_src: yes
-        mode: 0640
-        owner: "{{ redis_user }}"
-        group: "{{ redis_group }}"
-
     - name: Remove current Redis Build Directory.
       file:
         path: "{{ redis_build_dir }}"
         state: absent
       when: redis_version is defined
 
+- name: Create Redis Server Service file.
+  become: yes
+  template:
+    src: "redis-server.service.j2"
+    dest: "{{ redis_server_service_file }}"
+    mode: '0640'
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+  notify:
+    - Reread Systemd Configs
+    - Restart Redis Server
+
+- name: Create Redis Sentinel Service file.
+  become: yes
+  template:
+    src: "redis-sentinel.service.j2"
+    dest: "{{ redis_sentinel_service_file }}"
+    mode: '0640'
+    owner: "{{ redis_user }}"
+    group: "{{ redis_group }}"
+  notify:
+    - Reread Systemd Configs
+    - Restart Redis Sentinel
+
 - name: Create Redis Configuration Directory.
   become: yes
   file:
     path: "{{ redis_configuration_dir }}"
     state: directory
-    mode: 0755
+    mode: '0755'
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
 
@@ -115,7 +119,7 @@
   template:
     src: redis.conf.j2
     dest: "{{ redis_server_configuration_file }}"
-    mode: 0640
+    mode: '0640'
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
 
@@ -124,7 +128,7 @@
   template:
     src: sentinel.conf.j2
     dest: "{{ redis_sentinel_configuration_file }}"
-    mode: 0640
+    mode: '0640'
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
   register: sentinel_configuration
@@ -133,40 +137,12 @@
   changed_when:
     - sentinel_configuration.stderr is defined
 
-- name: Replacement in Redis Server Service File
-  become: yes
-  replace:
-    path: "{{ redis_server_service_file }}"
-    regexp: '--supervised systemd --daemonize no'
-    replace: "{{ redis_server_configuration_file }}"
-
-- name: Replacement in Redis Server Service File
-  become: yes
-  replace:
-    path: "{{ redis_server_service_file }}"
-    regexp: 'Type=notify'
-    replace: 'Type=forking'
-
-- name: Replacement in Redis Sentinel Service File
-  become: yes
-  replace:
-    path: "{{ redis_sentinel_service_file }}"
-    regexp: '--supervised systemd --daemonize no'
-    replace: "{{ redis_sentinel_configuration_file }} --sentinel"
-
-- name: Replacement in Redis Sentinel Service File
-  become: yes
-  replace:
-    path: "{{ redis_sentinel_service_file }}"
-    regexp: 'Type=notify'
-    replace: 'Type=forking'
-
 - name: Create Redis Lib Directory.
   become: yes
   file:
     path: "{{ redis_lib_dir }}"
     state: directory
-    mode: 0770
+    mode: '0770'
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
 
@@ -175,7 +151,7 @@
   file:
     path: "{{ redis_log_dir }}"
     state: directory
-    mode: 0770
+    mode: '0770'
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
 
