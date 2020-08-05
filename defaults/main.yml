@@ -55,6 +55,10 @@ redis_sentinel_log_file_path: "{{ redis_log_dir }}/redis-sentinel.log"
 redis_log_level: 'notice'
 # Sentinel log level, can be one of: debug, verbose, notice, warning
 sentinel_log_level: 'notice'
+# Redis protected-mode
+redis_protected_mode: 'yes'
+# Sentinel protected-mode
+sentinel_protected_mode: 'yes'
 # Redis user name
 redis_user: 'redis'
 # Redis group name
