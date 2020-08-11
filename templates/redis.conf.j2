@@ -12,8 +12,8 @@ dir /var/lib/redis/
 bind {{ redis_instance_ip }}
 port 6379
 
-requirepass "{{ redis_instance_requirepass }}"
-masterauth "{{ redis_instance_masterauth }}"
+requirepass "{{ redis_password }}"
+masterauth "{{ redis_password }}"
 
 timeout 300
 
