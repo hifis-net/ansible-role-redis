@@ -13,7 +13,7 @@ bind {{ redis_instance_ip }}
 port 26379
 
 sentinel monitor {{ redis_cluster_name }} {{ redis_master_instance_ip }} 6379 2
-sentinel auth-pass {{ redis_cluster_name }} {{ redis_instance_sentinelpass }}
+sentinel auth-pass {{ redis_cluster_name }} {{ redis_password }}
 sentinel down-after-milliseconds {{ redis_cluster_name }} 10000
 sentinel failover-timeout {{ redis_cluster_name }} 30000
 sentinel parallel-syncs {{ redis_cluster_name }} 1
