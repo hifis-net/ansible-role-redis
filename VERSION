@@ -3,12 +3,4 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: "Include redis-role"
-      include_role:
-        name: "redis-role"
-
-...
+Unreleased
