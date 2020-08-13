@@ -5,7 +5,7 @@ SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
 SPDX-License-Identifier: Apache-2.0
 -->
 
-Redis_Role
+Redis Role
 ==========
 
 Role sets up multiple Redis instances to be used as caching servers in a

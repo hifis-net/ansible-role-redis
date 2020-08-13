@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 galaxy_info:
-  role_name: redis_role
+  role_name: redis-role
 
   author: HIFIS Software Team
   description: Research Software Engineers
@@ -12,7 +12,7 @@ galaxy_info:
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
-  issue_tracker_url: https://gitlab.com/hifis/ansible/redis_role
+  issue_tracker_url: https://gitlab.com/hifis/ansible/redis-role
 
   # Choose a valid license ID from https://spdx.org - some suggested licenses:
   # - BSD-3-Clause (default)
