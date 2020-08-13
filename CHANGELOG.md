@@ -16,7 +16,7 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
-## [Unreleased](https://gitlab.com/hifis/ansible/redis-role/-/tree/master)
+## [0.1.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.1.0)
 
 ### Added
 - Add initial molecule setup
