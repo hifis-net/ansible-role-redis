@@ -16,6 +16,15 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
+## Unreleased
+
+[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.1.0...master)
+
+### Added
+- Upgrade Redis from version 6.0.6 to 6.0.8
+([!19](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/19) 
+by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+
 ## [0.1.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.1.0)
 
 ### Added
