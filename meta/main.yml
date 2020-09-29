@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 galaxy_info:
-  role_name: redis-role
+  role_name: redis_role
 
   author: HIFIS Software Team
   description: Research Software Engineers
