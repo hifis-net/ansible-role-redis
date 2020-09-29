@@ -22,10 +22,15 @@ Group your changes into these categories:
 
 ### Changed
 - Upgrade Redis from version 6.0.6 to 6.0.8
-([!19](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/19) 
-by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+  ([!19](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/19) 
+  by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
 - Improve and speed up the CI pipeline
   ([!20](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/20) 
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
+
+### Fixed
+- Fix linter issues 106 and 208
+  ([!23](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/23) 
   by [tobiashuste](https://gitlab.com/tobiashuste)).
 
 ## [0.1.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.1.0)
