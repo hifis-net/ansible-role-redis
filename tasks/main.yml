@@ -15,6 +15,7 @@
   register: redis_version_installed
   when: redis_server_installed.stat.exists
   changed_when: false
+  check_mode: no
 
 - name: Determine version.
   set_fact:
