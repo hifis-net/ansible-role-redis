@@ -27,6 +27,9 @@ Group your changes into these categories:
 - Improve and speed up the CI pipeline
   ([!20](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/20) 
   by [tobiashuste](https://gitlab.com/tobiashuste)).
+- Include role independent of project directory name
+  ([!25](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/25)
+  by [Normo](https://gitlab.com/Normo)).
 
 ### Fixed
 - Fix linter issues 106 and 208
