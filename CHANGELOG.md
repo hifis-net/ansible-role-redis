@@ -43,6 +43,9 @@ Group your changes into these categories:
 - Fix linter issues 106 and 208
   ([!23](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/23) 
   by [tobiashuste](https://gitlab.com/tobiashuste)).
+- Simplify Systemd configuration reload
+  ([!28](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/28)
+  by [Normo](https://gitlab.com/Normo)).
 
 ## [0.1.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.1.0)
 
