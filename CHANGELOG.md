@@ -35,6 +35,9 @@ Group your changes into these categories:
 - Include role independent of project directory name
   ([!25](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/25)
   by [Normo](https://gitlab.com/Normo)).
+- Upgrade Redis from version 6.0.8 to 6.0.9
+  ([!27](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/27) 
+  by [Normo](https://gitlab.com/Normo)).
 
 ### Fixed
 - Fix linter issues 106 and 208
