@@ -18,7 +18,9 @@ Group your changes into these categories:
 
 ## Unreleased
 
-[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.1.0...master)
+[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.2.0...master)
+
+## [0.2.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.2.0)
 
 ### Added
 - Enable check-mode
