@@ -4,20 +4,18 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
-- name: Reread Systemd Configs
-  systemd:
-    daemon_reload: yes
-
 - name: Restart Redis Server
   become: yes
   service:
     name: "{{ redis_server_service_name }}"
     state: restarted
+    daemon_reload: yes
 
 - name: Restart Redis Sentinel
   become: yes
   service:
     name: "{{ redis_sentinel_service_name }}"
     state: restarted
+    daemon_reload: yes
 
 ...

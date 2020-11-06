@@ -97,7 +97,6 @@
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
   notify:
-    - Reread Systemd Configs
     - Restart Redis Server
 
 - name: Create Redis Sentinel Service file.
@@ -109,7 +108,6 @@
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
   notify:
-    - Reread Systemd Configs
     - Restart Redis Sentinel
 
 - name: Create Redis Configuration Directory.
@@ -170,6 +168,7 @@
     name: "{{ redis_server_service_name }}"
     state: started
     enabled: yes
+    daemon_reload: yes
   notify: Restart Redis Server
 
 - name: Register Redis Sentinel Service.
@@ -178,6 +177,7 @@
     name: "{{ redis_sentinel_service_name }}"
     state: started
     enabled: yes
+    daemon_reload: yes
   notify: Restart Redis Sentinel
 
 ...
