@@ -20,6 +20,11 @@ Group your changes into these categories:
 
 [List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.2.0...master)
 
+### Changed
+- Upgrade and pin project dependencies
+  ([!35](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/35) 
+  by [Normo](https://gitlab.com/Normo)).
+
 ## [0.2.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.2.0)
 
 ### Added
