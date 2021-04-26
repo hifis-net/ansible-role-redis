@@ -24,6 +24,9 @@ Group your changes into these categories:
 - Upgrade and pin project dependencies
   ([!35](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/35) 
   by [Normo](https://gitlab.com/Normo)).
+- Upgrade Redis from 6.0.9 to 6.2.2
+  ([!36](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/36)
+  by [Normo](https://gitlab.com/Normo)).
 
 ## [0.2.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.2.0)
 
