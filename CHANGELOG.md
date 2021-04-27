@@ -18,7 +18,7 @@ Group your changes into these categories:
 
 ## Unreleased
 
-[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.2.0...master)
+[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.2.0...main)
 
 ### Changed
 - Upgrade and pin project dependencies
