@@ -46,7 +46,7 @@ Password used to authenticate in the Redis cluster:
 redis_password: 'changeme'
 ```
 
-List of depend packages required by Redis Server:
+List of dependent packages required by Redis Server:
 ```yaml
 redis_dependencies:
   - 'build-essential'
