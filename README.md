@@ -7,7 +7,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # Redis Ansible Role
 
-A role to set up Redis instance to be used as caching servers in a high
+A role to set up Redis instances to be used as caching servers in a high
 availability and scalability context.
 
 ## Requirements
