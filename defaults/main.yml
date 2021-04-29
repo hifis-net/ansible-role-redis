@@ -8,7 +8,7 @@
 # Here you specify whether it is a 'master' or 'replica' instance:
 redis_instance_type: 'master'
 # You need to provide the IP address of your Redis instance:
-redis_instance_ip: "{{ ansible_default_ipv4.address }}"
+redis_instance_ip: "127.0.0.1"
 # This is the name of the Redis cluster:
 redis_cluster_name: 'redis-cluster'
 # You need to provide the IP address of your Redis master instance:
