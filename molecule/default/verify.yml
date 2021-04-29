@@ -8,7 +8,32 @@
 
 - name: Verify
   hosts: all
+  vars:
+    redis_server_service_name: 'redis-server'
+    redis_sentinel_service_name: 'redis-sentinel'
+    redis_server_port: 6379
+    redis_sentinel_port: 26379
+    redis_ports:
+      - "{{ redis_server_port }}"
+      - "{{ redis_sentinel_port }}"
   tasks:
-  - name: Example assertion
-    assert:
-      that: true
+    - name: Populate service facts
+      service_facts:
+      register: services_state
+
+    - name: Check that Redis is running on instance
+      assert:
+        that:
+          - services_state.ansible_facts.services[redis_server_service_name + '.service'].state is search("running")
+          - services_state.ansible_facts.services[redis_sentinel_service_name + '.service'].state is search("running")
+
+    - name: Gather facts on listening ports.
+      listen_ports_facts:
+
+    - name: Check if Redis is listening on TCP ports
+      vars:
+        tcp_listen: "{{ ansible_facts.tcp_listen | selectattr('port', 'in', redis_ports) | list }}"
+      assert:
+        that:
+          - item.name == redis_server_service_name
+      loop: "{{ tcp_listen }}"
