@@ -5,6 +5,7 @@
 
 galaxy_info:
   role_name: redis
+  namespace: hifis
   author: HIFIS Software Team
   description: Install and configure Redis
   company: Helmholtz Association
