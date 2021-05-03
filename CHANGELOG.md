@@ -30,6 +30,9 @@ Group your changes into these categories:
 - Verify that Redis is running and listening on default ports
   ([!40](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/40)
   by [Normo](https://gitlab.com/Normo)).
+- Bind Redis on loopback interface by default
+  ([!41](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/41)
+  by [Normo](https://gitlab.com/Normo)).
 
 ## [0.2.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.2.0)
 

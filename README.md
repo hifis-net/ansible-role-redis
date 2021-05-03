@@ -28,7 +28,7 @@ redis_instance_type: 'master'
 
 The IP address to bind Redis to:
 ```yaml
-redis_instance_ip: "{{ ansible_default_ipv4.address }}"
+redis_instance_ip: "127.0.0.1"
 ```
 
 The Redis Master instance IP address:
