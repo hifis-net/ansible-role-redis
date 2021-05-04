@@ -16,9 +16,9 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
-## Unreleased
+## [1.0.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v1.0.0)
 
-[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.2.0...main)
+[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.2.0...v1.0.0)
 
 ### Changed
 - Upgrade and pin project dependencies
@@ -38,6 +38,8 @@ Group your changes into these categories:
   by [Normo](https://gitlab.com/Normo)).
 
 ## [0.2.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.2.0)
+
+[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.1.0...v0.2.0)
 
 ### Added
 - Enable check-mode
