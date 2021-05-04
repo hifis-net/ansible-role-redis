@@ -33,6 +33,9 @@ Group your changes into these categories:
 - Bind Redis on loopback interface by default
   ([!41](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/41)
   by [Normo](https://gitlab.com/Normo)).
+- Interact with Redis when testing the role
+  ([!43](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/43)
+  by [Normo](https://gitlab.com/Normo)).
 
 ## [0.2.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.2.0)
 
