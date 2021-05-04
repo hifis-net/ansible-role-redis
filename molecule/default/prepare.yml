@@ -13,5 +13,6 @@
           - ca-certificates   # for Redis download
           - iproute2          # for gathering network facts
           - net-tools         # for gathering listening ports
+          - python3-redis     # required by community.general.redis
           - sudo              # for `become` privilege escalation
         state: present
