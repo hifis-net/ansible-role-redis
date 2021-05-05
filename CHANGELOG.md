@@ -16,7 +16,7 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
-## [1.0.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v1.0.0)
+## [1.0.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v1.0.0) - 2021-05-05
 
 [List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.2.0...v1.0.0)
 
@@ -37,7 +37,7 @@ Group your changes into these categories:
   ([!43](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/43)
   by [Normo](https://gitlab.com/Normo)).
 
-## [0.2.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.2.0)
+## [0.2.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.2.0) - 2020-11-09
 
 [List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.1.0...v0.2.0)
 
@@ -68,7 +68,7 @@ Group your changes into these categories:
   ([!28](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/28)
   by [Normo](https://gitlab.com/Normo)).
 
-## [0.1.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.1.0)
+## [0.1.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.1.0) - 2020-08-13
 
 ### Added
 - Add initial molecule setup
