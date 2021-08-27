@@ -25,6 +25,9 @@ Group your changes into these categories:
 - Update Python dependencies and use Python 3.9 in GitLab CI
   ([!47](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/47) 
   by [tobiashuste](https://gitlab.com/tobiashuste)).
+- Increase Redis version in file with default variables and file README
+  ([!46](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/46)
+  by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
 
 ## [1.0.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v1.0.0) - 2021-05-05
 
