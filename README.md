@@ -18,7 +18,7 @@ None.
 
 The Redis version to install:
 ```yaml
-redis_version: '6.2.2'
+redis_version: '6.2.6'
 ```
 
 Specifies whether the current node is `master`, or a `replica` instance:
