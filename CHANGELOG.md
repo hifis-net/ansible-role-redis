@@ -16,11 +16,22 @@ Group your changes into these categories:
 
 `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
 
+## Unreleased
+
+[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v1.0.0...main)
+
+### Changed
+
+- Update Python dependencies and use Python 3.9 in GitLab CI
+  ([!47](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/47) 
+  by [tobiashuste](https://gitlab.com/tobiashuste)).
+
 ## [1.0.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v1.0.0) - 2021-05-05
 
 [List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.2.0...v1.0.0)
 
 ### Changed
+
 - Upgrade and pin project dependencies
   ([!35](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/35) 
   by [Normo](https://gitlab.com/Normo)).
@@ -42,11 +53,13 @@ Group your changes into these categories:
 [List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v0.1.0...v0.2.0)
 
 ### Added
+
 - Enable check-mode
   ([!26](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/26)
   by [Normo](https://gitlab.com/Normo)).
 
 ### Changed
+
 - Upgrade Redis from version 6.0.6 to 6.0.8
   ([!19](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/19) 
   by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
@@ -61,6 +74,7 @@ Group your changes into these categories:
   by [Normo](https://gitlab.com/Normo)).
 
 ### Fixed
+
 - Fix linter issues 106 and 208
   ([!23](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/23) 
   by [tobiashuste](https://gitlab.com/tobiashuste)).
@@ -71,6 +85,7 @@ Group your changes into these categories:
 ## [0.1.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v0.1.0) - 2020-08-13
 
 ### Added
+
 - Add initial molecule setup
   ([!1](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/1) 
   by [Normo](https://gitlab.com/Normo)).
@@ -91,6 +106,7 @@ Group your changes into these categories:
   by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
 
 ### Changed
+
 - Add defaults to Redis Ansible role and rename variables to more meaningful ones
   ([!2](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/2)
   by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
@@ -111,6 +127,7 @@ Group your changes into these categories:
   by [tobiashuste](https://gitlab.com/tobiashuste))
 
 ### Fixed
+
 - Redis / Sentinel service isn't restarted on update or config change
   ([!10](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/10)
   by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
