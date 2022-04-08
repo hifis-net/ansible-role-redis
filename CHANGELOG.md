@@ -22,6 +22,9 @@ Group your changes into these categories:
 
 ### Changed
 
+- Implement CI pipeline via GitHub Actions
+  ([\#2](https://github.com/hifis-net/ansible-role-redis/pull/2) 
+  by [tobiashuste](https://github.com/tobiashuste)).
 - Update Python dependencies and use Python 3.9 in GitLab CI
   ([!47](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/47) 
   by [tobiashuste](https://gitlab.com/tobiashuste)).
