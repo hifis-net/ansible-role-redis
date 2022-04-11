@@ -15,4 +15,5 @@
           - net-tools         # for gathering listening ports
           - python3-redis     # required by community.general.redis
           - sudo              # for `become` privilege escalation
+        update_cache: yes
         state: present

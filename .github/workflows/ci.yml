@@ -50,6 +50,11 @@ jobs:
   test:
     name: Run Molecule tests.
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        distro:
+          - ubuntu2004
 
     steps:
       - name: Check out the codebase.
@@ -60,6 +65,8 @@ jobs:
 
       - name: Run Molecule tests.
         run: pipenv run molecule test
+        env:
+          MOLECULE_DISTRO: ${{ matrix.distro }}
 
   release:
     name: Release new version on Ansible Galaxy
