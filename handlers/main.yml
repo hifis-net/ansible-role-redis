@@ -6,14 +6,14 @@
 ---
 - name: Restart Redis Server
   become: yes
-  service:
+  ansible.builtin.service:
     name: "{{ redis_server_service_name }}"
     state: restarted
     daemon_reload: yes
 
 - name: Restart Redis Sentinel
   become: yes
-  service:
+  ansible.builtin.service:
     name: "{{ redis_sentinel_service_name }}"
     state: restarted
     daemon_reload: yes

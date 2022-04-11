@@ -5,12 +5,12 @@
 
 ---
 - name: Check whether Redis server is installed.
-  stat:
+  ansible.builtin.stat:
     path: "{{ redis_bin }}"
   register: redis_server_installed
 
 - name: Check Redis version.
-  command:
+  ansible.builtin.command:
     cmd: "{{ redis_bin }} -v"
   register: redis_version_installed
   when: redis_server_installed.stat.exists
@@ -18,23 +18,23 @@
   check_mode: no
 
 - name: Determine version.
-  set_fact:
+  ansible.builtin.set_fact:
     installed_redis_server_version: "{{ redis_version_installed.stdout | regex_search('^Redis server v=(\\d+\\.\\d+\\.\\d+)', '\\1') | first }}"
   when: redis_server_installed.stat.exists
 
 - name: Output version strings.
-  debug:
+  ansible.builtin.debug:
     msg: "Installed version: {{ installed_redis_server_version }}, version to be installed: {{ redis_version }}."
   when: installed_redis_server_version is defined
 
 - name: Check if version strings are equal.
-  set_fact:
+  ansible.builtin.set_fact:
     is_redis_server_version_equal: "{{ installed_redis_server_version is version(redis_version, operator='==', strict=True) }}"
   when: redis_server_installed.stat.exists
 
 - name: Install dependencies.
   become: yes
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
     update_cache: yes
@@ -42,14 +42,14 @@
 
 - name: Create Redis Group.
   become: yes
-  group:
+  ansible.builtin.group:
     name: "{{ redis_group }}"
     system: yes
     state: present
 
 - name: Add Redis System User.
   become: yes
-  user:
+  ansible.builtin.user:
     name: "{{ redis_user }}"
     group: "{{ redis_group }}"
     system: yes
@@ -60,7 +60,7 @@
   block:
     - name: Download and extract redis-{{ redis_version }}.tar.gz
       become: yes
-      unarchive:
+      ansible.builtin.unarchive:
         src: "{{ redis_download_url }}"
         dest: "{{ redis_build_dir | dirname }}"
         mode: 0755
@@ -70,12 +70,12 @@
 
     - name: Build Redis.
       become: yes
-      make:
+      community.general.make:
         chdir: "{{ redis_build_dir }}"
 
     - name: Install Redis.
       become: yes
-      make:
+      community.general.make:
         chdir: "{{ redis_build_dir }}"
         target: install
       notify:
@@ -83,14 +83,14 @@
         - Restart Redis Sentinel
 
     - name: Remove current Redis Build Directory.
-      file:
+      ansible.builtin.file:
         path: "{{ redis_build_dir }}"
         state: absent
       when: redis_version is defined
 
 - name: Create Redis Server Service file.
   become: yes
-  template:
+  ansible.builtin.template:
     src: "redis-server.service.j2"
     dest: "{{ redis_server_service_file }}"
     mode: 0640
@@ -101,7 +101,7 @@
 
 - name: Create Redis Sentinel Service file.
   become: yes
-  template:
+  ansible.builtin.template:
     src: "redis-sentinel.service.j2"
     dest: "{{ redis_sentinel_service_file }}"
     mode: 0640
@@ -112,7 +112,7 @@
 
 - name: Create Redis Configuration Directory.
   become: yes
-  file:
+  ansible.builtin.file:
     path: "{{ redis_configuration_dir }}"
     state: directory
     mode: 0755
@@ -121,7 +121,7 @@
 
 - name: Configure Redis.
   become: yes
-  template:
+  ansible.builtin.template:
     src: redis.conf.j2
     dest: "{{ redis_server_configuration_file }}"
     mode: 0640
@@ -131,7 +131,7 @@
 
 - name: Configure Sentinel.
   become: yes
-  template:
+  ansible.builtin.template:
     src: sentinel.conf.j2
     dest: "{{ redis_sentinel_configuration_file }}"
     mode: 0640
@@ -146,7 +146,7 @@
 
 - name: Create Redis Lib Directory.
   become: yes
-  file:
+  ansible.builtin.file:
     path: "{{ redis_lib_dir }}"
     state: directory
     mode: 0770
@@ -155,7 +155,7 @@
 
 - name: Create Redis Log Directory.
   become: yes
-  file:
+  ansible.builtin.file:
     path: "{{ redis_log_dir }}"
     state: directory
     mode: 0770
@@ -164,7 +164,7 @@
 
 - name: Register Redis Server Service.
   become: yes
-  service:
+  ansible.builtin.service:
     name: "{{ redis_server_service_name }}"
     state: started
     enabled: yes
@@ -173,7 +173,7 @@
 
 - name: Register Redis Sentinel Service.
   become: yes
-  service:
+  ansible.builtin.service:
     name: "{{ redis_sentinel_service_name }}"
     state: started
     enabled: yes
