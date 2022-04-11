@@ -1,11 +1,18 @@
 <!--
-SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
-SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
+SPDX-FileCopyrightText: 2022 Helmholtz Centre for Environmental Research (UFZ)
+SPDX-FileCopyrightText: 2022 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
 
 SPDX-License-Identifier: Apache-2.0
 -->
 
 # Redis Ansible Role
+
+[![CI Status](https://github.com/hifis-net/ansible-role-redis/actions/workflows/ci.yml/badge.svg)](https://github.com/hifis-net/ansible-role-redis/actions/workflows/ci.yml)
+[![Ansible Galaxy Role](https://img.shields.io/ansible/role/54679?color=orange)](https://galaxy.ansible.com/hifis/redis)
+[![Ansible Galaxy Role downloads](https://img.shields.io/ansible/role/d/54679)](https://galaxy.ansible.com/hifis/redis)
+[![Ansible Galaxy quality score](https://img.shields.io/ansible/quality/54679)](https://galaxy.ansible.com/hifis/redis)
+[![Apache-2.0 Licensed](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/hifis-net/ansible-role-redis/blob/main/LICENSES/Apache-2.0.txt)
+[![Latest release](https://img.shields.io/github/v/release/hifis-net/ansible-role-redis)](https://github.com/hifis-net/ansible-role-redis/releases)
 
 A role to set up Redis instances to be used as caching servers in a high
 availability and scalability context.
