@@ -17,22 +17,22 @@
     redis_password: 'changeme'
   tasks:
     - name: Populate service facts
-      service_facts:
+      ansible.builtin.service_facts:
       register: services_state
 
     - name: Check that Redis is running on instance
-      assert:
+      ansible.builtin.assert:
         that:
           - services_state.ansible_facts.services[redis_server_service_name + '.service'].state is search("running")
           - services_state.ansible_facts.services[redis_sentinel_service_name + '.service'].state is search("running")
 
     - name: Gather facts on listening ports.
-      listen_ports_facts:
+      community.general.listen_ports_facts:
 
     - name: Check if Redis is listening on TCP ports
       vars:
         tcp_listen: "{{ ansible_facts.tcp_listen | selectattr('port', 'in', redis_ports) | list }}"
-      assert:
+      ansible.builtin.assert:
         that:
           - item.name == redis_server_service_name
       loop: "{{ tcp_listen }}"

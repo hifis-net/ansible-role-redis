@@ -8,7 +8,7 @@
   hosts: all
   tasks:
     - name: Install dependencies
-      apt:
+      ansible.builtin.apt:
         name:
           - ca-certificates   # for Redis download
           - iproute2          # for gathering network facts
