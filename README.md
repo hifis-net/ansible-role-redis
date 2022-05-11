@@ -17,6 +17,11 @@ SPDX-License-Identifier: Apache-2.0
 A role to set up Redis instances to be used as caching servers in a high
 availability and scalability context.
 
+Currently [supported platforms](meta/main.yml) are:
+
+- Ubuntu 20.04 LTS
+- Ubuntu 22.04 LTS
+
 ## Requirements
 
 None.
