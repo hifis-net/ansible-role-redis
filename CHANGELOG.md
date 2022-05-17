@@ -22,6 +22,9 @@ Group your changes into these categories:
 
 ### Changed
 
+- Adapt Redis config template due to changes made to Redis config after service restart
+  ([\#20](https://github.com/hifis-net/ansible-role-redis/pull/20)
+  by [christianhueserhzdr](https://github.com/christianhueserhzdr)).
 - Implement CI pipeline via GitHub Actions
   ([\#2](https://github.com/hifis-net/ansible-role-redis/pull/2) 
   by [tobiashuste](https://github.com/tobiashuste)).
