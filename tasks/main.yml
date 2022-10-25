@@ -58,7 +58,7 @@
 - name: Continue if Redis is not installed or versions are not equal.
   when: not redis_server_installed.stat.exists or not is_redis_server_version_equal
   block:
-    - name: Download and extract redis-{{ redis_version }}.tar.gz
+    - name: Download and extract redis-{{ redis_version }}
       become: yes
       ansible.builtin.unarchive:
         src: "{{ redis_download_url }}"
