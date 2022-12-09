@@ -7,20 +7,23 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: podman
 platforms:
   - name: instance_redis
-    image: geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2004}-ansible:latest
+    image: ${MOLECULE_IMAGE:-ghcr.io/hifis-net/ubuntu-systemd:22.04}
     pre_build_image: true
     privileged: true
+    systemd: always
+    tty: true
     override_command: false
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
 lint: |
-  yamllint --strict --format colored .
+  yamllint --strict --format colored . &&
   ansible-lint -v --force-color --offline --exclude .pipenv/ .
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      stdout_callback: "yaml"
   playbooks:
     prepare: prepare.yml
     converge: converge.yml
