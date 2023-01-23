@@ -4,12 +4,14 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+
 - name: Restart Redis Server
   become: yes
   ansible.builtin.service:
     name: "{{ redis_server_service_name }}"
     state: restarted
     daemon_reload: yes
+  when: not is_initial_dryrun
 
 - name: Restart Redis Sentinel
   become: yes
@@ -17,5 +19,6 @@
     name: "{{ redis_sentinel_service_name }}"
     state: restarted
     daemon_reload: yes
+  when: not is_initial_dryrun
 
 ...
