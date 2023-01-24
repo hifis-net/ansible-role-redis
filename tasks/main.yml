@@ -175,7 +175,6 @@
     name: "{{ redis_server_service_name }}"
     state: started
     enabled: yes
-    daemon_reload: yes
   when: not is_initial_dryrun
   notify: Restart Redis Server
 
@@ -185,7 +184,6 @@
     name: "{{ redis_sentinel_service_name }}"
     state: started
     enabled: yes
-    daemon_reload: yes
   when: not is_initial_dryrun
   notify: Restart Redis Sentinel
 
