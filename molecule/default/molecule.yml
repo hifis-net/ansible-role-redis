@@ -29,5 +29,19 @@ provisioner:
     converge: converge.yml
 verifier:
   name: ansible
+scenario:
+  name: default
+  test_sequence:
+    - destroy
+    - lint
+    - syntax
+    - create
+    - prepare
+    - check
+    - converge
+    - idempotence
+    - check
+    - verify
+    - destroy
 
 ...
