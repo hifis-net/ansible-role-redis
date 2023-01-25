@@ -1,36 +1,58 @@
-<!--
-SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
-SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
-
-SPDX-License-Identifier: Apache-2.0
--->
-
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [Unreleased](https://github.com/hifis-net/ansible-role-redis/tree/HEAD)
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+[Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.0.0...HEAD)
 
-Group your changes into these categories:
+**Implemented enhancements:**
 
-`Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`.
+- Add support for Ubuntu 22.04 [\#14](https://github.com/hifis-net/ansible-role-redis/issues/14)
+- Add badges to README [\#10](https://github.com/hifis-net/ansible-role-redis/issues/10)
+- Implement GitHub Actions pipeline [\#1](https://github.com/hifis-net/ansible-role-redis/issues/1)
+- Add support for Ubuntu 22.04 [\#15](https://github.com/hifis-net/ansible-role-redis/pull/15) ([tobiashuste](https://github.com/tobiashuste))
+- Use the FQCN throughout the whole project [\#13](https://github.com/hifis-net/ansible-role-redis/pull/13) ([tobiashuste](https://github.com/tobiashuste))
+- Add badges to README [\#11](https://github.com/hifis-net/ansible-role-redis/pull/11) ([tobiashuste](https://github.com/tobiashuste))
+- Implement CI pipeline via GitHub Actions [\#2](https://github.com/hifis-net/ansible-role-redis/pull/2) ([tobiashuste](https://github.com/tobiashuste))
 
-## Unreleased
+**Fixed bugs:**
 
-[List of commits](https://gitlab.com/hifis/ansible/redis-role/-/compare/v1.0.0...main)
+- Add folder molecule to command ansible-lint in molecule lint [\#74](https://github.com/hifis-net/ansible-role-redis/pull/74) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
 
-### Changed
+**Closed issues:**
 
-- Implement CI pipeline via GitHub Actions
-  ([\#2](https://github.com/hifis-net/ansible-role-redis/pull/2) 
-  by [tobiashuste](https://github.com/tobiashuste)).
-- Update Python dependencies and use Python 3.9 in GitLab CI
-  ([!47](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/47) 
-  by [tobiashuste](https://gitlab.com/tobiashuste)).
-- Increase Redis version in file with default variables and file README
-  ([!46](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/46)
-  by [christian.hueser.hzdr](https://gitlab.com/christian.hueser.hzdr)).
+- Add support for initial dry-runs to role [\#72](https://github.com/hifis-net/ansible-role-redis/issues/72)
+- Switch to molecule-podman [\#62](https://github.com/hifis-net/ansible-role-redis/issues/62)
+- Use FQCN everywhere in the project [\#12](https://github.com/hifis-net/ansible-role-redis/issues/12)
+
+**Merged pull requests:**
+
+- Add support for initial dry-runs [\#73](https://github.com/hifis-net/ansible-role-redis/pull/73) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
+- Bump ansible-lint from 6.8.7 to 6.11.0 [\#71](https://github.com/hifis-net/ansible-role-redis/pull/71) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump yamllint from 1.28.0 to 1.29.0 [\#70](https://github.com/hifis-net/ansible-role-redis/pull/70) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Switch from molecule-docker to molecule-podman [\#67](https://github.com/hifis-net/ansible-role-redis/pull/67) ([Normo](https://github.com/Normo))
+- Bump ansible from 6.5.0 to 7.1.0 [\#66](https://github.com/hifis-net/ansible-role-redis/pull/66) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump reuse from 1.0.0 to 1.1.0 [\#63](https://github.com/hifis-net/ansible-role-redis/pull/63) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.8.4 to 6.8.6 [\#57](https://github.com/hifis-net/ansible-role-redis/pull/57) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.8.3 to 6.8.4 [\#55](https://github.com/hifis-net/ansible-role-redis/pull/55) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.8.2 to 6.8.3 [\#54](https://github.com/hifis-net/ansible-role-redis/pull/54) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 4.0.2 to 4.0.3 [\#53](https://github.com/hifis-net/ansible-role-redis/pull/53) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 4.0.1 to 4.0.2 [\#51](https://github.com/hifis-net/ansible-role-redis/pull/51) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.5.2 to 6.8.2 [\#50](https://github.com/hifis-net/ansible-role-redis/pull/50) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 6.3.0 to 6.5.0 [\#49](https://github.com/hifis-net/ansible-role-redis/pull/49) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump yamllint from 1.27.1 to 1.28.0 [\#42](https://github.com/hifis-net/ansible-role-redis/pull/42) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.1.0 to 6.5.2 [\#41](https://github.com/hifis-net/ansible-role-redis/pull/41) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 6.2.0 to 6.3.0 [\#39](https://github.com/hifis-net/ansible-role-redis/pull/39) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 5.7.1 to 6.2.0 [\#37](https://github.com/hifis-net/ansible-role-redis/pull/37) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 3.6.1 to 4.0.1 [\#35](https://github.com/hifis-net/ansible-role-redis/pull/35) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump yamllint from 1.26.3 to 1.27.1 [\#33](https://github.com/hifis-net/ansible-role-redis/pull/33) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump robertdebock/galaxy-action from 1.2.0 to 1.2.1 [\#27](https://github.com/hifis-net/ansible-role-redis/pull/27) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump reuse from 0.14.0 to 1.0.0 [\#26](https://github.com/hifis-net/ansible-role-redis/pull/26) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 6.0.2 to 6.1.0 [\#18](https://github.com/hifis-net/ansible-role-redis/pull/18) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 5.6.0 to 5.7.1 [\#17](https://github.com/hifis-net/ansible-role-redis/pull/17) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 5.3.0 to 5.6.0 [\#9](https://github.com/hifis-net/ansible-role-redis/pull/9) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 3.6.0 to 3.6.1 [\#8](https://github.com/hifis-net/ansible-role-redis/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible-lint from 5.4.0 to 6.0.2 [\#7](https://github.com/hifis-net/ansible-role-redis/pull/7) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Configurable molecule image [\#4](https://github.com/hifis-net/ansible-role-redis/pull/4) ([tobiashuste](https://github.com/tobiashuste))
 
 ## [1.0.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v1.0.0) - 2021-05-05
 
@@ -143,3 +165,6 @@ Group your changes into these categories:
 - Update project path to gitlab-ci templates
   ([!14](https://gitlab.com/hifis/ansible/redis-role/-/merge_requests/14)
   by [Normo](https://gitlab.com/Normo))
+
+
+\* *This Changelog was automatically generated by [github_changelog_generator](https://github.com/github-changelog-generator/github-changelog-generator)*
