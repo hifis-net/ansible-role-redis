@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/hifis-net/ansible-role-redis/tree/HEAD)
+## [v1.1.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.1.0) (2023-01-26)
 
-[Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.0.0...HEAD)
+[Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.0.0...v1.1.0)
 
 **Implemented enhancements:**
 
@@ -16,16 +16,19 @@
 
 **Fixed bugs:**
 
+- Molecule folder not linted by molecule [\#52](https://github.com/hifis-net/ansible-role-redis/issues/52)
 - Add folder molecule to command ansible-lint in molecule lint [\#74](https://github.com/hifis-net/ansible-role-redis/pull/74) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
 
 **Closed issues:**
 
 - Add support for initial dry-runs to role [\#72](https://github.com/hifis-net/ansible-role-redis/issues/72)
 - Switch to molecule-podman [\#62](https://github.com/hifis-net/ansible-role-redis/issues/62)
+- Add an auto-generated version of the CHANGELOG file [\#21](https://github.com/hifis-net/ansible-role-redis/issues/21)
 - Use FQCN everywhere in the project [\#12](https://github.com/hifis-net/ansible-role-redis/issues/12)
 
 **Merged pull requests:**
 
+- Add auto-generated CHANGELOG based on HISTORY since v1.0.0 [\#75](https://github.com/hifis-net/ansible-role-redis/pull/75) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
 - Add support for initial dry-runs [\#73](https://github.com/hifis-net/ansible-role-redis/pull/73) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
 - Bump ansible-lint from 6.8.7 to 6.11.0 [\#71](https://github.com/hifis-net/ansible-role-redis/pull/71) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump yamllint from 1.28.0 to 1.29.0 [\#70](https://github.com/hifis-net/ansible-role-redis/pull/70) ([dependabot[bot]](https://github.com/apps/dependabot))
