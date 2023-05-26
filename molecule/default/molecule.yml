@@ -16,9 +16,6 @@ platforms:
     systemd: always
     tty: true
     override_command: false
-lint: |
-  yamllint --strict --format colored . &&
-  ansible-lint -v --force-color --offline --exclude .pipenv/ . molecule/
 provisioner:
   name: ansible
   config_options:
@@ -33,7 +30,6 @@ scenario:
   name: default
   test_sequence:
     - destroy
-    - lint
     - syntax
     - create
     - prepare
