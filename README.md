@@ -94,6 +94,12 @@ Redis Sentinel service file path:
 redis_sentinel_service_file: '{{ redis_systemd_dir }}/redis-sentinel.service'
 ```
 
+Password for Redis Sentinel. This is unset by default.
+
+```yaml
+redis_sentinel_password: 'changeme'
+```
+
 Redis configuration directory path:
 ```yaml
 redis_configuration_dir: '/etc/redis'

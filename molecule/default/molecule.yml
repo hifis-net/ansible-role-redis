@@ -24,6 +24,11 @@ provisioner:
   playbooks:
     prepare: prepare.yml
     converge: converge.yml
+  inventory:
+    hosts:
+      all:
+        vars:
+          redis_sentinel_password: "123456"
 verifier:
   name: ansible
 scenario:
