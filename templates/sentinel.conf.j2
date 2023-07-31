@@ -1,14 +1,15 @@
+{#
 # SPDX-FileCopyrightText: 2020 Helmholtz Centre for Environmental Research (UFZ)
 # SPDX-FileCopyrightText: 2020 Helmholtz-Zentrum Dresden-Rossendorf (HZDR)
 #
 # SPDX-License-Identifier: Apache-2.0
-
+#}
 supervised no
 daemonize yes
 pidfile "/var/run/redis/redis-sentinel.pid"
 logfile "{{ redis_sentinel_log_file_path }}"
-loglevel "{{ sentinel_log_level }}"
-dir /var/lib/redis/
+loglevel {{ sentinel_log_level }}
+dir "/var/lib/redis"
 bind {{ redis_instance_ip }}
 port 26379
 
@@ -20,6 +21,5 @@ sentinel monitor {{ redis_cluster_name }} {{ redis_master_instance_ip }} 6379 2
 sentinel auth-pass {{ redis_cluster_name }} {{ redis_password }}
 sentinel down-after-milliseconds {{ redis_cluster_name }} 10000
 sentinel failover-timeout {{ redis_cluster_name }} 30000
-sentinel parallel-syncs {{ redis_cluster_name }} 1
 
-protected-mode "{{ sentinel_protected_mode }}"
+protected-mode {{ sentinel_protected_mode }}
