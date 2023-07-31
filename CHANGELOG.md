@@ -1,18 +1,33 @@
 # Changelog
 
+## [v1.2.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.2.0) (2023-07-31)
+
+[Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.1.0...v1.2.0)
+
+**Implemented enhancements:**
+
+- Allow to configure a password for Redis Sentinel [\#103](https://github.com/hifis-net/ansible-role-redis/issues/103)
+
+**Merged pull requests:**
+
+- chore: update all Python dependencies [\#105](https://github.com/hifis-net/ansible-role-redis/pull/105) ([tobiashuste](https://github.com/tobiashuste))
+- feat: allow to configure authentication for sentinel [\#104](https://github.com/hifis-net/ansible-role-redis/pull/104) ([tobiashuste](https://github.com/tobiashuste))
+- Bump ansible from 7.1.0 to 7.5.0 [\#94](https://github.com/hifis-net/ansible-role-redis/pull/94) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 4.0.4 to 5.0.0 [\#92](https://github.com/hifis-net/ansible-role-redis/pull/92) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v1.1.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.1.0) (2023-01-26)
 
 [Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.0.0...v1.1.0)
 
 **Implemented enhancements:**
 
-- Add support for Ubuntu 22.04 [\#14](https://github.com/hifis-net/ansible-role-redis/issues/14)
 - Add badges to README [\#10](https://github.com/hifis-net/ansible-role-redis/issues/10)
 - Implement GitHub Actions pipeline [\#1](https://github.com/hifis-net/ansible-role-redis/issues/1)
-- Add support for Ubuntu 22.04 [\#15](https://github.com/hifis-net/ansible-role-redis/pull/15) ([tobiashuste](https://github.com/tobiashuste))
+- Add support for Ubuntu 22.04 [\#14](https://github.com/hifis-net/ansible-role-redis/issues/14)
 - Use the FQCN throughout the whole project [\#13](https://github.com/hifis-net/ansible-role-redis/pull/13) ([tobiashuste](https://github.com/tobiashuste))
 - Add badges to README [\#11](https://github.com/hifis-net/ansible-role-redis/pull/11) ([tobiashuste](https://github.com/tobiashuste))
 - Implement CI pipeline via GitHub Actions [\#2](https://github.com/hifis-net/ansible-role-redis/pull/2) ([tobiashuste](https://github.com/tobiashuste))
+- Add support for Ubuntu 22.04 [\#15](https://github.com/hifis-net/ansible-role-redis/pull/15) ([tobiashuste](https://github.com/tobiashuste))
 
 **Fixed bugs:**
 
@@ -22,14 +37,14 @@
 **Closed issues:**
 
 - Add support for initial dry-runs to role [\#72](https://github.com/hifis-net/ansible-role-redis/issues/72)
-- Switch to molecule-podman [\#62](https://github.com/hifis-net/ansible-role-redis/issues/62)
-- Add an auto-generated version of the CHANGELOG file [\#21](https://github.com/hifis-net/ansible-role-redis/issues/21)
 - Use FQCN everywhere in the project [\#12](https://github.com/hifis-net/ansible-role-redis/issues/12)
+- Switch to molecule-podman [\#62](https://github.com/hifis-net/ansible-role-redis/issues/62)
+- Release version 1.1.0 of Ansible role Redis [\#22](https://github.com/hifis-net/ansible-role-redis/issues/22)
+- Add an auto-generated version of the CHANGELOG file [\#21](https://github.com/hifis-net/ansible-role-redis/issues/21)
 
 **Merged pull requests:**
 
-- Add auto-generated CHANGELOG based on HISTORY since v1.0.0 [\#75](https://github.com/hifis-net/ansible-role-redis/pull/75) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
-- Add support for initial dry-runs [\#73](https://github.com/hifis-net/ansible-role-redis/pull/73) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
+- Release version 1.1.0 of Ansible role Redis [\#76](https://github.com/hifis-net/ansible-role-redis/pull/76) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
 - Bump ansible-lint from 6.8.7 to 6.11.0 [\#71](https://github.com/hifis-net/ansible-role-redis/pull/71) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump yamllint from 1.28.0 to 1.29.0 [\#70](https://github.com/hifis-net/ansible-role-redis/pull/70) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Switch from molecule-docker to molecule-podman [\#67](https://github.com/hifis-net/ansible-role-redis/pull/67) ([Normo](https://github.com/Normo))
@@ -56,6 +71,8 @@
 - Bump molecule from 3.6.0 to 3.6.1 [\#8](https://github.com/hifis-net/ansible-role-redis/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump ansible-lint from 5.4.0 to 6.0.2 [\#7](https://github.com/hifis-net/ansible-role-redis/pull/7) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Configurable molecule image [\#4](https://github.com/hifis-net/ansible-role-redis/pull/4) ([tobiashuste](https://github.com/tobiashuste))
+- Add auto-generated CHANGELOG based on HISTORY since v1.0.0 [\#75](https://github.com/hifis-net/ansible-role-redis/pull/75) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
+- Add support for initial dry-runs [\#73](https://github.com/hifis-net/ansible-role-redis/pull/73) ([christianhueserhzdr](https://github.com/christianhueserhzdr))
 
 ## [1.0.0](https://gitlab.com/hifis/ansible/redis-role/-/releases/v1.0.0) - 2021-05-05
 
