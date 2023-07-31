@@ -1,5 +1,19 @@
 # Changelog
 
+## [v1.3.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.3.0) (2023-07-31)
+
+[Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.2.0...v1.3.0)
+
+**Fixed bugs:**
+
+- Changing sentinel.conf always results in 'ok' [\#6](https://github.com/hifis-net/ansible-role-redis/issues/6)
+- fix: do not overwrite sentinel configuration [\#106](https://github.com/hifis-net/ansible-role-redis/pull/106) ([tobiashuste](https://github.com/tobiashuste))
+
+**Closed issues:**
+
+- Adapt Redis config template due to changes after restart of Redis service [\#19](https://github.com/hifis-net/ansible-role-redis/issues/19)
+- Make Molecule test image configurable [\#3](https://github.com/hifis-net/ansible-role-redis/issues/3)
+
 ## [v1.2.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.2.0) (2023-07-31)
 
 [Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.1.0...v1.2.0)
