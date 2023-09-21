@@ -1,5 +1,25 @@
 # Changelog
 
+## [v1.4.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.4.0) (2023-09-21)
+
+[Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.3.0...v1.4.0)
+
+**Closed issues:**
+
+- Adapt Redis config template due to changes after restart of Redis service [\#19](https://github.com/hifis-net/ansible-role-redis/issues/19)
+
+**Merged pull requests:**
+
+- chore: bump Redis version to 7.2.1 [\#121](https://github.com/hifis-net/ansible-role-redis/pull/121) ([Normo](https://github.com/Normo))
+- chore: add CITATION.cff [\#119](https://github.com/hifis-net/ansible-role-redis/pull/119) ([Normo](https://github.com/Normo))
+- chore: add codeowners file [\#118](https://github.com/hifis-net/ansible-role-redis/pull/118) ([Normo](https://github.com/Normo))
+- fix: do not overwrite redis server configuration [\#117](https://github.com/hifis-net/ansible-role-redis/pull/117) ([Normo](https://github.com/Normo))
+- Bump ansible-lint from 6.17.2 to 6.20.0 [\#116](https://github.com/hifis-net/ansible-role-redis/pull/116) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible from 8.2.0 to 8.4.0 [\#115](https://github.com/hifis-net/ansible-role-redis/pull/115) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/checkout from 3 to 4 [\#113](https://github.com/hifis-net/ansible-role-redis/pull/113) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule from 5.1.0 to 6.0.2 [\#112](https://github.com/hifis-net/ansible-role-redis/pull/112) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump molecule-plugins from 23.4.1 to 23.5.0 [\#107](https://github.com/hifis-net/ansible-role-redis/pull/107) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v1.3.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.3.0) (2023-07-31)
 
 [Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.2.0...v1.3.0)
@@ -11,7 +31,6 @@
 
 **Closed issues:**
 
-- Adapt Redis config template due to changes after restart of Redis service [\#19](https://github.com/hifis-net/ansible-role-redis/issues/19)
 - Make Molecule test image configurable [\#3](https://github.com/hifis-net/ansible-role-redis/issues/3)
 
 ## [v1.2.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.2.0) (2023-07-31)
