@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "529c8930a713ceb7df891131c4a9078546c1c555badebdc576a5d7fa9a991dc2"
+            "sha256": "e76d2b29f9858da2fc62930cdf83934095f9f9ffe7296c700813ba7d0693d700"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -743,11 +743,11 @@
                 "podman"
             ],
             "hashes": [
-                "sha256:34c47ee2c11c35ba30ca84ea684c1ee1669cf7e58d2197ac9dbfcbf42d0a1b7b",
-                "sha256:6734e11fa36b1ee3f1f80feaaa4eb703eae17f9117abe53dc5af6f3f093c0a63"
+                "sha256:893dba8d077adb30fcd50a5d082300404ced3bb745451bc0927d4a1ada131d31",
+                "sha256:f13ea047b8650c892604b81b76382bc80bb4ae25ea50b23f30e81fd9d5802aff"
             ],
             "index": "pypi",
-            "version": "==23.4.1"
+            "version": "==23.5.0"
         },
         "mypy-extensions": {
             "hashes": [
