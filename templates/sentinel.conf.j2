@@ -12,8 +12,8 @@ loglevel {{ sentinel_log_level }}
 dir "/var/lib/redis"
 bind {{ redis_instance_ip }}
 port 26379
-
 {% if (redis_sentinel_password is defined) and (redis_sentinel_password|length > 0) %}
+
 requirepass "{{ redis_sentinel_password }}"
 {% endif %}
 
