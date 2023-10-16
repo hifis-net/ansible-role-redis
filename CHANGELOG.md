@@ -1,5 +1,15 @@
 # Changelog
 
+## [v1.4.1](https://github.com/hifis-net/ansible-role-redis/tree/v1.4.1) (2023-10-17)
+
+[Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.4.0...v1.4.1)
+
+**Merged pull requests:**
+
+- fix: reformat config templates [\#126](https://github.com/hifis-net/ansible-role-redis/pull/126) ([Normo](https://github.com/Normo))
+- chore\(deps\): bump ansible from 8.4.0 to 8.5.0 [\#125](https://github.com/hifis-net/ansible-role-redis/pull/125) ([dependabot[bot]](https://github.com/apps/dependabot))
+- chore\(deps-dev\): bump ansible-lint from 6.20.0 to 6.20.3 [\#124](https://github.com/hifis-net/ansible-role-redis/pull/124) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v1.4.0](https://github.com/hifis-net/ansible-role-redis/tree/v1.4.0) (2023-09-21)
 
 [Full Changelog](https://github.com/hifis-net/ansible-role-redis/compare/v1.3.0...v1.4.0)
@@ -11,6 +21,7 @@
 **Merged pull requests:**
 
 - chore: bump Redis version to 7.2.1 [\#121](https://github.com/hifis-net/ansible-role-redis/pull/121) ([Normo](https://github.com/Normo))
+- Prepare release v1.4.0 [\#120](https://github.com/hifis-net/ansible-role-redis/pull/120) ([Normo](https://github.com/Normo))
 - chore: add CITATION.cff [\#119](https://github.com/hifis-net/ansible-role-redis/pull/119) ([Normo](https://github.com/Normo))
 - chore: add codeowners file [\#118](https://github.com/hifis-net/ansible-role-redis/pull/118) ([Normo](https://github.com/Normo))
 - fix: do not overwrite redis server configuration [\#117](https://github.com/hifis-net/ansible-role-redis/pull/117) ([Normo](https://github.com/Normo))
