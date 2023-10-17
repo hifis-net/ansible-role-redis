@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Prepare release 1.4.1 [\#130](https://github.com/hifis-net/ansible-role-redis/pull/130) ([Normo](https://github.com/Normo))
 - fix Redis Sentinel restart [\#129](https://github.com/hifis-net/ansible-role-redis/pull/129) ([Normo](https://github.com/Normo))
 - fix: reformat config templates [\#126](https://github.com/hifis-net/ansible-role-redis/pull/126) ([Normo](https://github.com/Normo))
 - chore\(deps\): bump ansible from 8.4.0 to 8.5.0 [\#125](https://github.com/hifis-net/ansible-role-redis/pull/125) ([dependabot[bot]](https://github.com/apps/dependabot))
