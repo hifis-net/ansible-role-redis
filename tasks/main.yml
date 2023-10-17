@@ -163,7 +163,9 @@
     mode: 0600
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
-  notify: Restart Redis Server
+  notify:
+    - Remove auto-generated Redis config section
+    - Restart Redis Server
 
 - name: Configure Redis Sentinel.
   become: yes
@@ -175,7 +177,9 @@
     mode: 0600
     owner: "{{ redis_user }}"
     group: "{{ redis_group }}"
-  notify: Restart Redis Sentinel
+  notify:
+    - Remove auto-generated Sentinel config section
+    - Restart Redis Sentinel
 
 - name: Create Redis Lib Directory.
   become: yes

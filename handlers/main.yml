@@ -4,6 +4,23 @@
 # SPDX-License-Identifier: Apache-2.0
 
 ---
+- name: Remove auto-generated Redis config section
+  become: yes
+  ansible.builtin.replace:
+    path: "{{ redis_server_configuration_file }}"
+    after: "# END ANSIBLE MANAGED BLOCK"
+    regexp: "^.*$"
+    replace: ""
+  when: not is_initial_dryrun
+
+- name: Remove auto-generated Sentinel config section
+  become: yes
+  ansible.builtin.replace:
+    path: "{{ redis_sentinel_configuration_file }}"
+    after: "# END ANSIBLE MANAGED BLOCK"
+    regexp: "^.*$"
+    replace: ""
+  when: not is_initial_dryrun
 
 - name: Restart Redis Server
   become: yes
