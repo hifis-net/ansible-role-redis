@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- Prepare release 1.4.2 [\#135](https://github.com/hifis-net/ansible-role-redis/pull/135) ([Normo](https://github.com/Normo))
 - fix: remove config rewrite section when changing the config [\#134](https://github.com/hifis-net/ansible-role-redis/pull/134) ([Normo](https://github.com/Normo))
 
 ## [v1.4.1](https://github.com/hifis-net/ansible-role-redis/tree/v1.4.1) (2023-10-17)
