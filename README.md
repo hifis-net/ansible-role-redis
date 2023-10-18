@@ -13,6 +13,8 @@ SPDX-License-Identifier: Apache-2.0
 [![Ansible Galaxy quality score](https://img.shields.io/ansible/quality/54679)](https://galaxy.ansible.com/hifis/redis)
 [![Apache-2.0 Licensed](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/hifis-net/ansible-role-redis/blob/main/LICENSES/Apache-2.0.txt)
 [![Latest release](https://img.shields.io/github/v/release/hifis-net/ansible-role-redis)](https://github.com/hifis-net/ansible-role-redis/releases)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8366541.svg)](https://doi.org/10.5281/zenodo.8366541)
+
 
 A role to set up Redis instances to be used as caching servers in a high
 availability and scalability context.

@@ -34,5 +34,5 @@ authors:
     orcid: 'https://orcid.org/0000-0002-5028-6663'
 repository-code: 'https://github.com/hifis-net/ansible-role-redis'
 repository-artifact: 'https://galaxy.ansible.com/hifis/redis'
-version: 'v1.4.1'
-date-released: '2023-10-17'
+version: 'v1.4.2'
+date-released: '2023-10-18'
