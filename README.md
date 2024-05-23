@@ -7,13 +7,19 @@ SPDX-License-Identifier: Apache-2.0
 
 # Redis Ansible Role
 
+:warning: **This project is archived!** :warning:
+
+This role has been migrated to our `hifis.toolkit` collection:
+
+- <https://github.com/hifis-net/ansible-collection-toolkit>
+- <https://galaxy.ansible.com/ui/repo/published/hifis/toolkit/>
+
 [![CI Status](https://github.com/hifis-net/ansible-role-redis/actions/workflows/ci.yml/badge.svg)](https://github.com/hifis-net/ansible-role-redis/actions/workflows/ci.yml)
 [![Ansible Role: hifis.redis](https://img.shields.io/badge/role-hifis.redis-blue)](https://galaxy.ansible.com/ui/standalone/roles/hifis/redis/)
 [![Ansible Role Downloads](https://img.shields.io/ansible/role/d/hifis/redis)](https://galaxy.ansible.com/ui/standalone/roles/hifis/redis/)
 [![Apache-2.0 Licensed](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/hifis-net/ansible-role-redis/blob/main/LICENSES/Apache-2.0.txt)
 [![Latest release](https://img.shields.io/github/v/release/hifis-net/ansible-role-redis)](https://github.com/hifis-net/ansible-role-redis/releases)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8366541.svg)](https://doi.org/10.5281/zenodo.8366541)
-
 
 A role to set up Redis instances to be used as caching servers in a high
 availability and scalability context.
